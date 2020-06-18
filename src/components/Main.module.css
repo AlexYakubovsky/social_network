@@ -1,0 +1,13 @@
+.main {
+    grid-area: main;
+    background: red;
+    width: 100%;
+}
+
+.main_photo{
+    width: 800px;
+}
+
+.main_photo img {
+    width: 100%;
+}

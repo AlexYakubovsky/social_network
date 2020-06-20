@@ -1,0 +1,6 @@
+.profile {
+    grid-area: main;
+    background: white;
+    max-width: 800px;
+    padding: 10px;
+}

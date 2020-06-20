@@ -1,6 +1,5 @@
 import React from "react";
-import "../App.css";
-import logo from "./../logo.jpg";
+import logo from "./../../logo.jpg";
 import styles from "./Header.module.css"
 
 const Header = () => {

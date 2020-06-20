@@ -1,8 +1,9 @@
 .app {
     display: grid;
     grid-template-areas: "header header header" "nav main ." "footer footer footer";
-    grid-template-rows: 80px 1fr 100px;
+    grid-template-rows: 80px 1fr 50px;
     grid-template-columns: 1fr 800px 1fr;
+    grid-gap: 10px;
     min-width: 100vh;
     min-height: 100vh;
     background: #bbc3ce;

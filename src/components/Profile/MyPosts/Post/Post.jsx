@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./Post.module.css"
 import userLogo from "../../../../user-logo.png"
 
-const Post = () => {
+const Post = props => {
+    debugger;
     return (
         <div className={styles.post}>
             <div className={styles.post__user_logo}>
@@ -10,10 +11,10 @@ const Post = () => {
             </div>
             <div className={styles.post_description}>
                 <div>
-                    post 1
+                    {props.message}
                 </div>
                 <div className={styles.post_description__like}>
-                    like
+                    like - {props.like}
                 </div>
             </div>
         </div>

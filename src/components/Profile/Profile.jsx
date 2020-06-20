@@ -6,11 +6,11 @@ import ProfileDescription from "./ProfileDescription/ProfileDescription";
 
 const Profile = () => {
     return (
-        <main className={styles.profile}>
+        <div className={styles.profile}>
             <ProfileDescription/>
             <NewPost/>
             <MyPosts/>
-        </main>
+        </div>
     );
 };
 

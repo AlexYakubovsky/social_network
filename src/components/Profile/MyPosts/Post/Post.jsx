@@ -3,7 +3,6 @@ import styles from "./Post.module.css"
 import userLogo from "../../../../user-logo.png"
 
 const Post = props => {
-    debugger;
     return (
         <div className={styles.post}>
             <div className={styles.post__user_logo}>

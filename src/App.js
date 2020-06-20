@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
+// import Messages from "./components/Messages/Messages";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
@@ -11,7 +12,10 @@ const App = () => {
         <div className='app'>
             <Header/>
             <Nav/>
-            <Profile/>
+            <main className='main'>
+                <Profile/>
+                {/*<Messages/>*/}
+            </main>
             <Footer/>
         </div>
     );

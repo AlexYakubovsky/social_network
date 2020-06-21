@@ -1,0 +1,20 @@
+.messages {
+    display: flex;
+    justify-content: space-between;
+}
+
+.messages_users {
+    flex: 0 0 50%;
+}
+
+.messages_users__user {
+    margin-top: 5px;
+}
+
+.messages_dialogs {
+    flex: 0 0 50%;
+}
+
+.messages_dialogs__message {
+    margin-top: 5px;
+}

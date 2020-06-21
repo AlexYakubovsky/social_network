@@ -1,3 +1,38 @@
 .nav {
     grid-area: nav;
+    padding: 15px;
+    background: white;
+    height: max-content;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 0 10px rgba(93, 93, 93, 0.5);
+}
+
+.nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: black;
+    font-weight: 700;
+}
+
+.nav ul li a:hover {
+    color: #6b6b6b82;
+}
+.nav ul li a.active {
+    color: #6b6b6b82;
+    border-bottom: 1px solid #0066ff
+}
+
+@media screen and (min-width: 1367px) {
+    .nav {
+        max-width: 150px;
+        display: flex;
+        width: 100%;
+        justify-self: end;
+    }
 }

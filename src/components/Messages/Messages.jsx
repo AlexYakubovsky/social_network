@@ -1,21 +1,22 @@
 import React from "react";
 import styles from "./Messages.module.css";
+import {NavLink} from "react-router-dom";
 
 const Messages = () => {
     return (
         <div className={styles.messages}>
             <div className={styles.messages_users}>
                 <div className={styles.messages_users__user}>
-                    Alex
+                    <NavLink to='/messages/1'>Alex</NavLink>
                 </div>
                 <div className={styles.messages_users__user}>
-                    Kirill
+                    <NavLink to='/messages/2'>Kirill</NavLink>
                 </div>
                 <div className={styles.messages_users__user}>
-                    Evgeny
+                    <NavLink to='/messages/3'>Evgeny</NavLink>
                 </div>
                 <div className={styles.messages_users__user}>
-                    Olga
+                    <NavLink to='/messages/4'>Olga</NavLink>
                 </div>
             </div>
 

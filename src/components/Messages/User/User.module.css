@@ -1,0 +1,18 @@
+.user {
+    margin-top: 5px;
+}
+
+.user a {
+    color: black;
+    text-decoration: none;
+}
+
+.user a:hover {
+    color: #6b6b6b82;
+}
+
+.user a.active {
+    color: #6b6b6b82;
+    border-bottom: 1px solid #0066ff;
+    font-weight: 700;
+}

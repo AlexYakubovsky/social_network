@@ -1,38 +1,23 @@
 import React from "react";
 import styles from "./Messages.module.css";
-import {NavLink} from "react-router-dom";
+import User from "./User/User";
+import Dialog from "./Dialog/Dialog";
 
 const Messages = () => {
     return (
         <div className={styles.messages}>
-            <div className={styles.messages_users}>
-                <div className={styles.messages_users__user}>
-                    <NavLink to='/messages/1'>Alex</NavLink>
-                </div>
-                <div className={styles.messages_users__user}>
-                    <NavLink to='/messages/2'>Kirill</NavLink>
-                </div>
-                <div className={styles.messages_users__user}>
-                    <NavLink to='/messages/3'>Evgeny</NavLink>
-                </div>
-                <div className={styles.messages_users__user}>
-                    <NavLink to='/messages/4'>Olga</NavLink>
-                </div>
+            <div>
+                <User id='1' name='Alex'/>
+                <User id='2' name='Kirill'/>
+                <User id='3' name='Evgeny'/>
+                <User id='4' name='Olga'/>
             </div>
 
-            <div className={styles.messages_dialogs}>
-                <div className={styles.messages_dialogs__message}>
-                    hello
-                </div>
-                <div className={styles.messages_dialogs__message}>
-                    how are you?
-                </div>
-                <div className={styles.messages_dialogs__message}>
-                    what do think about this?
-                </div>
-                <div className={styles.messages_dialogs__message}>
-                    are you sure?
-                </div>
+            <div>
+                <Dialog message='hello'/>
+                <Dialog message='how are you?'/>
+                <Dialog message='what do think about this?'/>
+                <Dialog message='are you sure?'/>
             </div>
         </div>
     )

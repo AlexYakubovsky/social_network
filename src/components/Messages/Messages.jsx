@@ -3,22 +3,28 @@ import styles from "./Messages.module.css";
 import User from "./User/User";
 import Dialog from "./Dialog/Dialog";
 
+const userData = [
+    {id: 1, name: 'Alex'},
+    {id: 2, name: 'Kirill'},
+    {id: 3, name: 'Evgeny'},
+    {id: 4, name: 'Olga'},
+];
+
+const dialogData = [
+    {id: 1, message: 'hello'},
+    {id: 1, message: 'how are you?'},
+    {id: 1, message: 'what do think about this?'},
+    {id: 1, message: 'are you sure?'},
+];
+
+let user = userData.map(v => <User id={v.id} name={v.name}/>);
+let dialog = dialogData.map(v => <Dialog message={v.message}/>);
+
 const Messages = () => {
     return (
         <div className={styles.messages}>
-            <div>
-                <User id='1' name='Alex'/>
-                <User id='2' name='Kirill'/>
-                <User id='3' name='Evgeny'/>
-                <User id='4' name='Olga'/>
-            </div>
-
-            <div>
-                <Dialog message='hello'/>
-                <Dialog message='how are you?'/>
-                <Dialog message='what do think about this?'/>
-                <Dialog message='are you sure?'/>
-            </div>
+            <div>{user}</div>
+            <div>{dialog}</div>
         </div>
     )
 };

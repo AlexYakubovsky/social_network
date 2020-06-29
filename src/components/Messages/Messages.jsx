@@ -4,8 +4,8 @@ import User from "./User/User";
 import Dialog from "./Dialog/Dialog";
 
 const Messages = props => {
-    let userComponent = props.userData.map(v => <User id={v.id} name={v.name}/>);
-    let dialogComponent = props.dialogData.map(v => <Dialog message={v.message}/>);
+    let userComponent = props.state.userData.map(v => <User id={v.id} name={v.name}/>);
+    let dialogComponent = props.state.dialogData.map(v => <Dialog message={v.message}/>);
 
     return (
         <div className={styles.messages}>

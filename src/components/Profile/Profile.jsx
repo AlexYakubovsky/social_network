@@ -9,7 +9,7 @@ const Profile = props => {
         <div className={styles.profile}>
             <ProfileDescription/>
             <NewPost/>
-            <MyPosts postData={props.postData}/>
+            <MyPosts postData={props.state}/>
         </div>
     );
 };

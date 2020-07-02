@@ -11,7 +11,7 @@ const Messages = props => {
 
     let sendMessage = () => {
         let messageValue = texareaElem.current.value;
-        alert(messageValue)
+        props.addMessage(messageValue);
     };
 
     return (

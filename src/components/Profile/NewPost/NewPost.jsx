@@ -1,12 +1,12 @@
 import React from "react";
 // import styles from "./NewPost.module.css"
 
-const NewPost = () => {
+const NewPost = props => {
     let textareaElem = React.createRef();
 
     let addPost = () => {
         let newPostText = textareaElem.current.value;
-        alert(newPostText);
+        props.addPost(newPostText);
     };
 
     return (

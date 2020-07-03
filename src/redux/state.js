@@ -1,3 +1,5 @@
+import {rerenderAllTree} from "../rerenderAllTree";
+
 const state = {
     profilePage: {
         postData: [
@@ -31,6 +33,7 @@ export let addPost = postValue => {
     };
 
     state.profilePage.postData.push(newPost);
+    rerenderAllTree(state);
 };
 
 export let addMessage = messageValue => {
@@ -40,6 +43,7 @@ export let addMessage = messageValue => {
     };
 
     state.messagesPage.dialogData.push(newMessage);
+    rerenderAllTree(state);
 };
 
 export default state;

@@ -4,14 +4,14 @@ import User from "./User/User";
 import Dialog from "./Dialog/Dialog";
 
 const Messages = props => {
-    let userComponent = props.state.userData.map(v => <User id={v.id} name={v.name}/>);
-    let dialogComponent = props.state.dialogData.map(v => <Dialog message={v.message}/>);
+    let userComponent = props.messagesPage.userData.map(v => <User id={v.id} name={v.name}/>);
+    let dialogComponent = props.messagesPage.dialogData.map(v => <Dialog message={v.message}/>);
 
     let texareaElem = React.createRef();
 
-    let sendMessage = () => {
+    let newMessageValue = () => {
         let messageValue = texareaElem.current.value;
-        props.addMessage(messageValue);
+        props.changeMessageValue(messageValue);
     };
 
     return (
@@ -21,8 +21,8 @@ const Messages = props => {
                 <div>{dialogComponent}</div>
             </div>
             <div>
-                <textarea ref={texareaElem}/>
-                <button onClick={sendMessage}>Send message</button>
+                <textarea ref={texareaElem} value={props.messagesPage.messageValue} onChange={newMessageValue}/>
+                <button onClick={props.addMessage}>Send message</button>
             </div>
         </div>
     )

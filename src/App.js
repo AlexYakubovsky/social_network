@@ -16,9 +16,13 @@ const App = props => {
             <Nav/>
             <main className='main'>
                 <Route path='/profile'
-                       render={() => <Profile state={props.state.profilePage.postData} addPost={props.addPost}/>}/>
+                       render={() => <Profile profilePage={props.state.profilePage}
+                                              addPost={props.addPost}
+                                              changePostValue={props.changePostValue}/>}/>
                 <Route path='/messages'
-                       render={() => <Messages state={props.state.messagesPage} addMessage={props.addMessage}/>}/>
+                       render={() => <Messages messagesPage={props.state.messagesPage}
+                                               addMessage={props.addMessage}
+                                               changeMessageValue={props.changeMessageValue}/>}/>
                 <Route path='/friends' render={() => <Friends/>}/>
             </main>
             <Footer/>

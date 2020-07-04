@@ -2,17 +2,17 @@ import React from "react";
 // import styles from "./NewPost.module.css"
 
 const NewPost = props => {
-    let textareaElem = React.createRef();
+    const textareaElem = React.createRef();
 
-    let addPost = () => {
-        let newPostText = textareaElem.current.value;
-        props.addPost(newPostText);
+    let newPostValue = () => {
+        let newPostValue = textareaElem.current.value;
+        props.changePostValue(newPostValue);
     };
 
     return (
         <div>
-            <textarea ref={textareaElem}/>
-            <button onClick={addPost}>Add post</button>
+            <textarea ref={textareaElem} value={props.postValue} onChange={newPostValue}/>
+            <button onClick={props.addPost}>Add post</button>
         </div>
     );
 };

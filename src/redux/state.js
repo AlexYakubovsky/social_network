@@ -7,7 +7,8 @@ const state = {
             {id: 2, post: 'It is my second post', like: 7},
             {id: 3, post: 'How are you?', like: 3},
             {id: 4, post: 'What do you think about my last post?:)', like: 5}
-        ]
+        ],
+        postValue: 'What\'s new?'
     },
     messagesPage: {
         dialogData: [
@@ -21,29 +22,43 @@ const state = {
             {id: 2, name: 'Kirill'},
             {id: 3, name: 'Evgeny'},
             {id: 4, name: 'Olga'},
-        ]
+        ],
+        messageValue: 'Message...'
     }
 };
 
-export let addPost = postValue => {
+export let changePostValue = newPostValue => {
+    state.profilePage.postValue = newPostValue;
+    rerenderAllTree(state);
+};
+
+export let addPost = () => {
     let newPost = {
         id: 5,
-        post: postValue,
+        post: state.profilePage.postValue,
         like: 0
     };
 
     state.profilePage.postData.push(newPost);
+    state.profilePage.postValue = '';
     rerenderAllTree(state);
 };
 
-export let addMessage = messageValue => {
+export let changeMessageValue = newMessageValue => {
+    state.messagesPage.messageValue = newMessageValue;
+    rerenderAllTree(state);
+};
+
+export let addMessage = () => {
     let newMessage = {
         id: 5,
-        message: messageValue
+        message: state.messagesPage.messageValue
     };
 
     state.messagesPage.dialogData.push(newMessage);
+    state.messagesPage.messageValue = '';
     rerenderAllTree(state);
 };
 
+window.state = state;
 export default state;

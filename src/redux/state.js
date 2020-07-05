@@ -1,4 +1,6 @@
-import {rerenderAllTree} from "../rerenderAllTree";
+let rerenderAllTree = () => {
+    console.log('state was change');
+};
 
 const state = {
     profilePage: {
@@ -27,12 +29,12 @@ const state = {
     }
 };
 
-export let changePostValue = newPostValue => {
+export const changePostValue = newPostValue => {
     state.profilePage.postValue = newPostValue;
-    rerenderAllTree(state);
+    rerenderAllTree();
 };
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         post: state.profilePage.postValue,
@@ -41,15 +43,15 @@ export let addPost = () => {
 
     state.profilePage.postData.push(newPost);
     state.profilePage.postValue = '';
-    rerenderAllTree(state);
+    rerenderAllTree();
 };
 
-export let changeMessageValue = newMessageValue => {
+export const changeMessageValue = newMessageValue => {
     state.messagesPage.messageValue = newMessageValue;
-    rerenderAllTree(state);
+    rerenderAllTree();
 };
 
-export let addMessage = () => {
+export const addMessage = () => {
     let newMessage = {
         id: 5,
         message: state.messagesPage.messageValue
@@ -57,7 +59,11 @@ export let addMessage = () => {
 
     state.messagesPage.dialogData.push(newMessage);
     state.messagesPage.messageValue = '';
-    rerenderAllTree(state);
+    rerenderAllTree();
+};
+
+export let subscriber = observer => {
+    rerenderAllTree = observer;
 };
 
 window.state = state;

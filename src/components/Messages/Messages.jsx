@@ -10,8 +10,14 @@ const Messages = props => {
     let texareaElem = React.createRef();
 
     let newMessageValue = () => {
-        let messageValue = texareaElem.current.value;
-        props.changeMessageValue(messageValue);
+        let newMessageValue = texareaElem.current.value;
+        let action = {type: 'CHANGE_MESSAGE_VALUE', newMessageValue};
+        props.dispatch(action);
+    };
+
+    let addMessage = () => {
+        let action = {type: 'ADD_MESSAGE'};
+        props.dispatch(action);
     };
 
     return (
@@ -22,7 +28,7 @@ const Messages = props => {
             </div>
             <div>
                 <textarea ref={texareaElem} value={props.messagesPage.messageValue} onChange={newMessageValue}/>
-                <button onClick={props.addMessage}>Send message</button>
+                <button onClick={addMessage}>Send message</button>
             </div>
         </div>
     )

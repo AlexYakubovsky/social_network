@@ -38,37 +38,44 @@ const store = {
         this._rerenderAllTree = observer;
     },
 
-    changePostValue(newPostValue) {
-        this._state.profilePage.postValue = newPostValue;
-        this._rerenderAllTree();
-    },
+    dispatch(action) {
+        switch (action.type) {
+            case 'CHANGE_POST_VALUE':
+                this._state.profilePage.postValue = action.newPostValue;
+                this._rerenderAllTree();
+                break;
 
-    addPost() {
-        let newPost = {
-            id: 5,
-            post: this._state.profilePage.postValue,
-            like: 0
-        };
+            case 'ADD_POST':
+                let newPost = {
+                    id: 5,
+                    post: this._state.profilePage.postValue,
+                    like: 0
+                };
 
-        this._state.profilePage.postData.push(newPost);
-        this._state.profilePage.postValue = '';
-        this._rerenderAllTree();
-    },
+                this._state.profilePage.postData.push(newPost);
+                this._state.profilePage.postValue = '';
+                this._rerenderAllTree();
+                break;
 
-    changeMessageValue(newMessageValue) {
-        this._state.messagesPage.messageValue = newMessageValue;
-        this._rerenderAllTree();
-    },
+            case 'CHANGE_MESSAGE_VALUE':
+                this._state.messagesPage.messageValue = action.newMessageValue;
+                this._rerenderAllTree();
+                break;
 
-    addMessage() {
-        let newMessage = {
-            id: 5,
-            message: this._state.messagesPage.messageValue
-        };
+            case 'ADD_MESSAGE':
+                let newMessage = {
+                    id: 5,
+                    message: this._state.messagesPage.messageValue
+                };
 
-        this._state.messagesPage.dialogData.push(newMessage);
-        this._state.messagesPage.messageValue = '';
-        this._rerenderAllTree();
+                this._state.messagesPage.dialogData.push(newMessage);
+                this._state.messagesPage.messageValue = '';
+                this._rerenderAllTree();
+                break;
+
+            default:
+                return this._state;
+        }
     }
 };
 

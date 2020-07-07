@@ -17,12 +17,10 @@ const App = props => {
             <main className='main'>
                 <Route path='/profile'
                        render={() => <Profile profilePage={props.state.profilePage}
-                                              addPost={props.addPost}
-                                              changePostValue={props.changePostValue}/>}/>
+                                              dispatch={props.dispatch}/>}/>
                 <Route path='/messages'
                        render={() => <Messages messagesPage={props.state.messagesPage}
-                                               addMessage={props.addMessage}
-                                               changeMessageValue={props.changeMessageValue}/>}/>
+                                               dispatch={props.dispatch}/>}/>
                 <Route path='/friends' render={() => <Friends/>}/>
             </main>
             <Footer/>

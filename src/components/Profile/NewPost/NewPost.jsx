@@ -6,13 +6,19 @@ const NewPost = props => {
 
     let newPostValue = () => {
         let newPostValue = textareaElem.current.value;
-        props.changePostValue(newPostValue);
+        let action = {type: 'CHANGE_POST_VALUE', newPostValue};
+        props.dispatch(action);
+    };
+
+    let addPost = () => {
+        let action = {type: 'ADD_POST'};
+        props.dispatch(action)
     };
 
     return (
         <div>
             <textarea ref={textareaElem} value={props.postValue} onChange={newPostValue}/>
-            <button onClick={props.addPost}>Add post</button>
+            <button onClick={addPost}>Add post</button>
         </div>
     );
 };

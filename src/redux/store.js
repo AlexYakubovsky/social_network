@@ -1,3 +1,8 @@
+const CHANGE_POST_VALUE = 'CHANGE_POST_VALUE';
+const ADD_POST = 'ADD_POST';
+const CHANGE_MESSAGE_VALUE = 'CHANGE_MESSAGE_VALUE';
+const ADD_MESSAGE = 'ADD_MESSAGE';
+
 const store = {
     _state: {
         profilePage: {
@@ -40,12 +45,12 @@ const store = {
 
     dispatch(action) {
         switch (action.type) {
-            case 'CHANGE_POST_VALUE':
+            case CHANGE_POST_VALUE:
                 this._state.profilePage.postValue = action.newPostValue;
                 this._rerenderAllTree();
                 break;
 
-            case 'ADD_POST':
+            case ADD_POST:
                 let newPost = {
                     id: 5,
                     post: this._state.profilePage.postValue,
@@ -57,12 +62,12 @@ const store = {
                 this._rerenderAllTree();
                 break;
 
-            case 'CHANGE_MESSAGE_VALUE':
+            case CHANGE_MESSAGE_VALUE:
                 this._state.messagesPage.messageValue = action.newMessageValue;
                 this._rerenderAllTree();
                 break;
 
-            case 'ADD_MESSAGE':
+            case ADD_MESSAGE:
                 let newMessage = {
                     id: 5,
                     message: this._state.messagesPage.messageValue
@@ -78,6 +83,11 @@ const store = {
         }
     }
 };
+
+export const changePostValue = newPostValue => ({type: CHANGE_POST_VALUE, newPostValue});
+export const addPost = () => ({type: ADD_POST});
+export const changeMessageValue = newMessageValue => ({type: CHANGE_MESSAGE_VALUE, newMessageValue});
+export const addMessage = () => ({type: ADD_MESSAGE});
 
 window.store = store;
 export default store;

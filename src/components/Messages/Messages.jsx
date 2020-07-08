@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Messages.module.css";
 import User from "./User/User";
 import Dialog from "./Dialog/Dialog";
+import {addMessage, changeMessageValue} from "../../redux/store";
 
 const Messages = props => {
     let userComponent = props.messagesPage.userData.map(v => <User id={v.id} name={v.name}/>);
@@ -11,14 +12,10 @@ const Messages = props => {
 
     let newMessageValue = () => {
         let newMessageValue = texareaElem.current.value;
-        let action = {type: 'CHANGE_MESSAGE_VALUE', newMessageValue};
-        props.dispatch(action);
+        props.dispatch(changeMessageValue(newMessageValue));
     };
 
-    let addMessage = () => {
-        let action = {type: 'ADD_MESSAGE'};
-        props.dispatch(action);
-    };
+    let addNewMessage = () => props.dispatch(addMessage());
 
     return (
         <div>
@@ -28,7 +25,7 @@ const Messages = props => {
             </div>
             <div>
                 <textarea ref={texareaElem} value={props.messagesPage.messageValue} onChange={newMessageValue}/>
-                <button onClick={addMessage}>Send message</button>
+                <button onClick={addNewMessage}>Send message</button>
             </div>
         </div>
     )

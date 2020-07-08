@@ -1,24 +1,21 @@
 import React from "react";
 // import styles from "./NewPost.module.css"
+import {addPost, changePostValue} from "../../../redux/store";
 
 const NewPost = props => {
     const textareaElem = React.createRef();
 
     let newPostValue = () => {
         let newPostValue = textareaElem.current.value;
-        let action = {type: 'CHANGE_POST_VALUE', newPostValue};
-        props.dispatch(action);
+        props.dispatch(changePostValue(newPostValue));
     };
 
-    let addPost = () => {
-        let action = {type: 'ADD_POST'};
-        props.dispatch(action)
-    };
+    let addNewPost = () => props.dispatch(addPost());
 
     return (
         <div>
             <textarea ref={textareaElem} value={props.postValue} onChange={newPostValue}/>
-            <button onClick={addPost}>Add post</button>
+            <button onClick={addNewPost}>Add post</button>
         </div>
     );
 };

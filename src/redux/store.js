@@ -12,7 +12,7 @@ const store = {
                 {id: 3, post: 'How are you?', like: 3},
                 {id: 4, post: 'What do you think about my last post?:)', like: 5}
             ],
-            postValue: 'What\'s new?'
+            postValue: ''
         },
         messagesPage: {
             dialogData: [
@@ -27,7 +27,7 @@ const store = {
                 {id: 3, name: 'Evgeny'},
                 {id: 4, name: 'Olga'},
             ],
-            messageValue: 'Message...'
+            messageValue: ''
         }
     },
 

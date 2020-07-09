@@ -8,10 +8,8 @@ const Messages = props => {
     let userComponent = props.messagesPage.userData.map(v => <User id={v.id} name={v.name}/>);
     let dialogComponent = props.messagesPage.dialogData.map(v => <Dialog message={v.message}/>);
 
-    let texareaElem = React.createRef();
-
-    let newMessageValue = () => {
-        let newMessageValue = texareaElem.current.value;
+    let newMessageValue = (e) => {
+        let newMessageValue = e.target.value;
         props.dispatch(changeMessageValue(newMessageValue));
     };
 
@@ -24,7 +22,7 @@ const Messages = props => {
                 <div>{dialogComponent}</div>
             </div>
             <div>
-                <textarea ref={texareaElem} value={props.messagesPage.messageValue} onChange={newMessageValue}/>
+                <textarea placeholder={'Message...'} value={props.messagesPage.messageValue} onChange={newMessageValue}/>
                 <button onClick={addNewMessage}>Send message</button>
             </div>
         </div>

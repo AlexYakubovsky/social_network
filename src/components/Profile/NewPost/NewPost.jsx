@@ -3,10 +3,8 @@ import React from "react";
 import {addPost, changePostValue} from "../../../redux/store";
 
 const NewPost = props => {
-    const textareaElem = React.createRef();
-
-    let newPostValue = () => {
-        let newPostValue = textareaElem.current.value;
+    let newPostValue = e => {
+        let newPostValue = e.target.value;
         props.dispatch(changePostValue(newPostValue));
     };
 
@@ -14,7 +12,7 @@ const NewPost = props => {
 
     return (
         <div>
-            <textarea ref={textareaElem} value={props.postValue} onChange={newPostValue}/>
+            <textarea placeholder={'What\'s new?'} value={props.postValue} onChange={newPostValue}/>
             <button onClick={addNewPost}>Add post</button>
         </div>
     );

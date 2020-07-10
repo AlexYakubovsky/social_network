@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Messages.module.css";
 import User from "./User/User";
 import Dialog from "./Dialog/Dialog";
-import {addMessage, changeMessageValue} from "../../redux/store";
+import {addMessage, changeMessageValue} from "../../redux/messagesReducer";
 
 const Messages = props => {
     let userComponent = props.messagesPage.userData.map(v => <User id={v.id} name={v.name}/>);

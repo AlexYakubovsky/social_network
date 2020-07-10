@@ -1,7 +1,5 @@
-const CHANGE_POST_VALUE = 'CHANGE_POST_VALUE';
-const ADD_POST = 'ADD_POST';
-const CHANGE_MESSAGE_VALUE = 'CHANGE_MESSAGE_VALUE';
-const ADD_MESSAGE = 'ADD_MESSAGE';
+import profileReducer from "./profileReducer";
+import messagesReducer from "./messagesReducer";
 
 const store = {
     _state: {
@@ -44,50 +42,11 @@ const store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case CHANGE_POST_VALUE:
-                this._state.profilePage.postValue = action.newPostValue;
-                this._rerenderAllTree();
-                break;
-
-            case ADD_POST:
-                let newPost = {
-                    id: 5,
-                    post: this._state.profilePage.postValue,
-                    like: 0
-                };
-
-                this._state.profilePage.postData.push(newPost);
-                this._state.profilePage.postValue = '';
-                this._rerenderAllTree();
-                break;
-
-            case CHANGE_MESSAGE_VALUE:
-                this._state.messagesPage.messageValue = action.newMessageValue;
-                this._rerenderAllTree();
-                break;
-
-            case ADD_MESSAGE:
-                let newMessage = {
-                    id: 5,
-                    message: this._state.messagesPage.messageValue
-                };
-
-                this._state.messagesPage.dialogData.push(newMessage);
-                this._state.messagesPage.messageValue = '';
-                this._rerenderAllTree();
-                break;
-
-            default:
-                return this._state;
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._rerenderAllTree();
     }
 };
-
-export const changePostValue = newPostValue => ({type: CHANGE_POST_VALUE, newPostValue});
-export const addPost = () => ({type: ADD_POST});
-export const changeMessageValue = newMessageValue => ({type: CHANGE_MESSAGE_VALUE, newMessageValue});
-export const addMessage = () => ({type: ADD_MESSAGE});
 
 window.store = store;
 export default store;

@@ -1,6 +1,6 @@
 import React from "react";
 // import styles from "./NewPost.module.css"
-import {addPost, changePostValue} from "../../../redux/store";
+import {addPost, changePostValue} from "../../../redux/profileReducer";
 
 const NewPost = props => {
     let newPostValue = e => {

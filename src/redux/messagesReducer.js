@@ -1,25 +1,41 @@
 const CHANGE_MESSAGE_VALUE = 'CHANGE_MESSAGE_VALUE';
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
-    const messagesReducer = (state, action) => {
-        switch (action.type) {
-            case CHANGE_MESSAGE_VALUE:
-                state.messageValue = action.newMessageValue;
-                return state;
+const initialState = {
+    dialogData: [
+        {id: 1, message: 'hello'},
+        {id: 2, message: 'how are you?'},
+        {id: 3, message: 'what do think about this?'},
+        {id: 4, message: 'are you sure?'},
+    ],
+    userData: [
+        {id: 1, name: 'Alex'},
+        {id: 2, name: 'Kirill'},
+        {id: 3, name: 'Evgeny'},
+        {id: 4, name: 'Olga'},
+    ],
+    messageValue: ''
+};
 
-            case ADD_MESSAGE:
-                let newMessage = {
-                    id: 5,
-                    message: state.messageValue
-                };
+const messagesReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case CHANGE_MESSAGE_VALUE:
+            state.messageValue = action.newMessageValue;
+            return state;
 
-                state.dialogData.push(newMessage);
-                state.messageValue = '';
-                return state;
+        case ADD_MESSAGE:
+            let newMessage = {
+                id: 5,
+                message: state.messageValue
+            };
 
-            default:
-                return state;
-        }
+            state.dialogData.push(newMessage);
+            state.messageValue = '';
+            return state;
+
+        default:
+            return state;
+    }
 };
 
 export const changeMessageValue = newMessageValue => ({type: CHANGE_MESSAGE_VALUE, newMessageValue});

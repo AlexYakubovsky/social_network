@@ -1,19 +1,18 @@
 import React from "react";
 // import styles from "./NewPost.module.css"
-import {addPost, changePostValue} from "../../../redux/profileReducer";
 
 const NewPost = props => {
-    let newPostValue = e => {
+    let onChangePostValue = e => {
         let newPostValue = e.target.value;
-        props.dispatch(changePostValue(newPostValue));
+        props.newPostValue(newPostValue);
     };
 
-    let addNewPost = () => props.dispatch(addPost());
+    let onAddNewPost = () => props.addNewPost();
 
     return (
         <div>
-            <textarea placeholder={'What\'s new?'} value={props.postValue} onChange={newPostValue}/>
-            <button onClick={addNewPost}>Add post</button>
+            <textarea placeholder={'What\'s new?'} value={props.postValue} onChange={onChangePostValue}/>
+            <button onClick={onAddNewPost}>Add post</button>
         </div>
     );
 };

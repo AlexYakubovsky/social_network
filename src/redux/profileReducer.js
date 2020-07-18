@@ -14,8 +14,10 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_POST_VALUE:
-            state.postValue = action.newPostValue;
-            return state;
+            return {
+                ...state,
+                postValue: action.newPostValue
+            };
 
         case ADD_POST:
             let newPost = {
@@ -24,9 +26,12 @@ const profileReducer = (state = initialState, action) => {
                 like: 0
             };
 
-            state.postData.push(newPost);
             state.postValue = '';
-            return state;
+
+            return {
+                ...state,
+                postData: [...state.postData, newPost]
+            };
 
         default:
             return state;

@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import MessagesContainer from "./components/Messages/MessagesContainer";
-import Friends from "./components/Friends/Friends";
+import FriendsContainer from "./components/Friends/FriendsContainer";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
@@ -16,9 +16,8 @@ const App = () => {
             <Nav/>
             <main className='main'>
                 <Route path='/profile' render={() => <Profile/>}/>
-                <Route path='/messages'
-                       render={() => <MessagesContainer/>}/>
-                <Route path='/friends' render={() => <Friends/>}/>
+                <Route path='/messages' render={() => <MessagesContainer/>}/>
+                <Route path='/friends' render={() => <FriendsContainer/>}/>
             </main>
             <Footer/>
         </div>

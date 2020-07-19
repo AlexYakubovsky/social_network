@@ -31,12 +31,10 @@ const messagesReducer = (state = initialState, action) => {
                 message: state.messageValue
             };
 
-            state.messageValue = '';
-
             return {
                 ...state,
-                dialogData: [...state.dialogData, newMessage],
-                userData: [...state.userData]
+                messageValue: '',
+                dialogData: [...state.dialogData, newMessage]
             };
 
         default:

@@ -26,10 +26,9 @@ const profileReducer = (state = initialState, action) => {
                 like: 0
             };
 
-            state.postValue = '';
-
             return {
                 ...state,
+                postValue: '',
                 postData: [...state.postData, newPost]
             };
 

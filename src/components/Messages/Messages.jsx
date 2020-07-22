@@ -5,7 +5,7 @@ import Dialog from "./Dialog/Dialog";
 
 const Messages = props => {
     let userComponent = props.userData.map(v => <User id={v.id} name={v.name}/>);
-    let dialogComponent = props.dialogData.map(v => <Dialog message={v.message}/>);
+    let dialogComponent = props.dialogData.map(v => <Dialog id={v.id} message={v.message}/>);
 
     let onNewMessageValue = e => {
         let messageValue = e.target.value;

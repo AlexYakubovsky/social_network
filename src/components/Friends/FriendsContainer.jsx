@@ -1,6 +1,6 @@
 import Friends from "./Friends";
 import {connect} from "react-redux";
-import {followUser, unfollowUser} from "../../redux/friendsReducer";
+import {followUser, setUsers, unfollowUser} from "../../redux/friendsReducer";
 
 const mapStateToProps = state => {
     return {
@@ -10,6 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        setUsers: users => dispatch(setUsers(users)),
         followUser: userId => dispatch(followUser(userId)),
         unfollowUser: userId => dispatch(unfollowUser(userId))
     }

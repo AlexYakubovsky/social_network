@@ -16,13 +16,13 @@ const friendsReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(v => v.id === action.userId ? {...v, isFollow: true} : v)
+                users: state.users.map(v => v.id === action.userId ? {...v, followed: true} : v)
             };
 
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(v => v.id === action.userId ? {...v, isFollow: false} : v)
+                users: state.users.map(v => v.id === action.userId ? {...v, followed: false} : v)
             };
 
 

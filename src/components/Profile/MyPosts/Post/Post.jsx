@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Post.module.css"
-import userLogo from "../../../../user-logo.png"
+import userLogo from "../../../../assets/images/user-logo.png"
 
 const Post = props => {
     return (

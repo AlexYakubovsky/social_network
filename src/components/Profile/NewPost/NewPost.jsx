@@ -1,5 +1,5 @@
 import React from "react";
-// import styles from "./NewPost.module.css"
+import styles from "./NewPost.module.css";
 
 const NewPost = props => {
     let onChangePostValue = e => {
@@ -10,7 +10,7 @@ const NewPost = props => {
     let onAddNewPost = () => props.addNewPost();
 
     return (
-        <div>
+        <div className={styles.new_post}>
             <textarea placeholder={'What\'s new?'} value={props.postValue} onChange={onChangePostValue}/>
             <button onClick={onAddNewPost}>Add post</button>
         </div>

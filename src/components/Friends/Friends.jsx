@@ -15,18 +15,26 @@ class Friends extends React.Component {
                 {this.props.users.map(v => {
                     return (
                         <div key={v.id} className={styles.friends}>
-                            <img alt='' src={v.photos.small ? v.photos.small : userLogo}/>
                             <div>
+                                <img alt='' src={v.photos.small ? v.photos.small : userLogo}/>
+                            </div>
+
+                            <div className={styles.friends__user_info}>
                                 <div>
-                                    {v.name}
+                                    <div>
+                                        {v.name}
+                                    </div>
+
+                                    <div className={styles.user_info__follow}>
+                                        {v.followed ?
+                                            <button onClick={() => this.props.unfollowUser(v.id)}>Unfollow</button> :
+                                            <button onClick={() => this.props.followUser(v.id)}>Follow</button>}
+                                    </div>
                                 </div>
+
                                 <div>
                                     {v.status}
                                 </div>
-                            </div>
-                            <div>
-                                {v.followed ? <button onClick={() => this.props.unfollowUser(v.id)}>Unfollow</button> :
-                                    <button onClick={() => this.props.followUser(v.id)}>Follow</button>}
                             </div>
                         </div>
                     )

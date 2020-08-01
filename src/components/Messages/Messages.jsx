@@ -15,14 +15,18 @@ const Messages = props => {
     let onAddNewMessage = () => props.addNewMessage();
 
     return (
-        <div>
-            <div className={styles.messages}>
-                <div>{userComponent}</div>
-                <div>{dialogComponent}</div>
-            </div>
-            <div>
-                <textarea placeholder={'Message...'} value={props.messageValue} onChange={onNewMessageValue}/>
-                <button onClick={onAddNewMessage}>Send message</button>
+        <div className={styles.messages}>
+            <div className={styles.user_container}>{userComponent}</div>
+
+            <div className={styles.dialog_container}>
+                <div>
+                    {dialogComponent}
+                </div>
+
+                <div className={styles.messages__new_message}>
+                    <textarea placeholder={'Message...'} value={props.messageValue} onChange={onNewMessageValue}/>
+                    <button onClick={onAddNewMessage}>Send message</button>
+                </div>
             </div>
         </div>
     )

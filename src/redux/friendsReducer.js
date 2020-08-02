@@ -3,12 +3,14 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 const initialState = {
     users: [],
     totalCount: null,
     currentPage: 1,
-    pageSize: 50
+    pageSize: 50,
+    isFetching: false
 };
 
 const friendsReducer = (state = initialState, action) => {
@@ -43,6 +45,12 @@ const friendsReducer = (state = initialState, action) => {
                 currentPage: action.currentPage
             };
 
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            };
+
         default:
             return state;
     }
@@ -53,5 +61,6 @@ export const followUser = userId => ({type: FOLLOW, userId});
 export const unfollowUser = userId => ({type: UNFOLLOW, userId});
 export const setTotalCount = totalCount => ({type: SET_TOTAL_COUNT, totalCount});
 export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, currentPage});
+export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default friendsReducer;

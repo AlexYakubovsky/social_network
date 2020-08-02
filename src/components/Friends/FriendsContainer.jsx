@@ -1,21 +1,18 @@
 import Friends from "./Friends";
 import {connect} from "react-redux";
-import {followUser, setUsers, unfollowUser} from "../../redux/friendsReducer";
+import {followUser, setUsers, unfollowUser, setTotalCount, setCurrentPage} from "../../redux/friendsReducer";
 
 const mapStateToProps = state => {
     return {
-        users: state.friendsPage.users
+        users: state.friendsPage.users,
+        totalCount: state.friendsPage.totalCount,
+        pageSize: state.friendsPage.pageSize,
+        currentPage: state.friendsPage.currentPage
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        setUsers: users => dispatch(setUsers(users)),
-        followUser: userId => dispatch(followUser(userId)),
-        unfollowUser: userId => dispatch(unfollowUser(userId))
-    }
-};
-
-const FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(Friends);
+const FriendsContainer = connect(mapStateToProps, {
+    setUsers, followUser, unfollowUser, setTotalCount, setCurrentPage
+})(Friends);
 
 export default FriendsContainer;

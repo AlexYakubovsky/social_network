@@ -7,12 +7,12 @@ const Messages = props => {
     let userComponent = props.userData.map(v => <User id={v.id} name={v.name}/>);
     let dialogComponent = props.dialogData.map(v => <Dialog id={v.id} message={v.message}/>);
 
-    let onNewMessageValue = e => {
+    let onChangeMessageValue = e => {
         let messageValue = e.target.value;
-        props.newMessageValue(messageValue);
+        props.changeMessageValue(messageValue);
     };
 
-    let onAddNewMessage = () => props.addNewMessage();
+    let onAddMessage = () => props.addMessage();
 
     return (
         <div className={styles.messages}>
@@ -24,8 +24,8 @@ const Messages = props => {
                 </div>
 
                 <div className={styles.messages__new_message}>
-                    <textarea placeholder={'Message...'} value={props.messageValue} onChange={onNewMessageValue}/>
-                    <button onClick={onAddNewMessage}>Send message</button>
+                    <textarea placeholder={'Message...'} value={props.messageValue} onChange={onChangeMessageValue}/>
+                    <button onClick={onAddMessage}>Send message</button>
                 </div>
             </div>
         </div>

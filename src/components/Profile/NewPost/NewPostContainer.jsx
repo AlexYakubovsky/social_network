@@ -8,13 +8,4 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        newPostValue: value => dispatch(changePostValue(value)),
-        addNewPost: () => dispatch(addPost())
-    }
-};
-
-const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(NewPost);
-
-export default NewPostContainer;
+export default connect(mapStateToProps, {changePostValue, addPost})(NewPost);

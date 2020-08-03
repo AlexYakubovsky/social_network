@@ -10,13 +10,4 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        newMessageValue: value => dispatch(changeMessageValue(value)),
-        addNewMessage: () => dispatch(addMessage())
-    }
-};
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
-
-export default MessagesContainer;
+export default connect(mapStateToProps, {changeMessageValue, addMessage})(Messages);

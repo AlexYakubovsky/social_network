@@ -4,14 +4,14 @@ import ProfileDescription from "./ProfileDescription/ProfileDescription";
 import NewPostContainer from "./NewPost/NewPostContainer";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-const Profile = () => {
+const Profile = props => {
     return (
         <div className={styles.profile}>
-            <ProfileDescription/>
+            <ProfileDescription {...props}/>
             <NewPostContainer/>
             <MyPostsContainer/>
         </div>
-    );
+    )
 };
 
 export default Profile;

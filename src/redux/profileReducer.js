@@ -1,5 +1,6 @@
 const CHANGE_POST_VALUE = 'CHANGE_POST_VALUE';
 const ADD_POST = 'ADD_POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const initialState = {
     postData: [
@@ -8,7 +9,8 @@ const initialState = {
         {id: 3, post: 'How are you?', like: 3},
         {id: 4, post: 'What do you think about my last post?:)', like: 5}
     ],
-    postValue: ''
+    postValue: '',
+    userProfile: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -32,6 +34,12 @@ const profileReducer = (state = initialState, action) => {
                 postData: [...state.postData, newPost]
             };
 
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                userProfile: {...action.userProfile}
+            };
+
         default:
             return state;
     }
@@ -39,5 +47,6 @@ const profileReducer = (state = initialState, action) => {
 
 export const changePostValue = newPostValue => ({type: CHANGE_POST_VALUE, newPostValue});
 export const addPost = () => ({type: ADD_POST});
+export const setUserProfile = userProfile => ({type: SET_USER_PROFILE, userProfile});
 
 export default profileReducer;

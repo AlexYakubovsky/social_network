@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Friends.module.css";
 import userLogo from "../../assets/images/user-logo.png"
+import {NavLink} from "react-router-dom";
 
 const Friends = props => {
     const pagesCount = Math.ceil(props.totalCount / props.pageSize);
@@ -26,13 +27,17 @@ const Friends = props => {
                     return (
                         <div key={v.id} className={styles.friends_list__item}>
                             <div>
-                                <img alt='' src={v.photos.small ? v.photos.small : userLogo}/>
+                                <NavLink to={`/profile/${v.id}`}>
+                                    <img alt='' src={v.photos.small ? v.photos.small : userLogo}/>
+                                </NavLink>
                             </div>
 
                             <div className={styles.friends_list__user_info}>
                                 <div>
                                     <div>
-                                        {v.name}
+                                        <NavLink to={`/profile/${v.id}`}>
+                                            {v.name}
+                                        </NavLink>
                                     </div>
 
                                     <div className={styles.user_info__follow}>

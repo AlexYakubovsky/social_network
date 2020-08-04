@@ -15,7 +15,7 @@ const App = () => {
             <Header/>
             <Nav/>
             <main className='main'>
-                <Route path='/profile' render={() => <ProfileContainer/>}/>
+                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                 <Route path='/messages' render={() => <MessagesContainer/>}/>
                 <Route path='/friends' render={() => <FriendsContainer/>}/>
             </main>

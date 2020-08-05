@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import {Route} from "react-router-dom";
 
-import Header from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from "./components/Nav/Nav";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
@@ -12,7 +12,7 @@ import Footer from "./components/Footer/Footer";
 const App = () => {
     return (
         <div className='app'>
-            <Header/>
+            <HeaderContainer/>
             <Nav/>
             <main className='main'>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>

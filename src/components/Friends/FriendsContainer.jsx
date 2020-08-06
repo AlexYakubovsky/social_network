@@ -6,17 +6,16 @@ import {
 } from "../../redux/friendsReducer";
 import * as axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
+import {usersAPI} from "../../api/api";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
-            {withCredentials: true})
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalCount(response.data.totalCount);
-                this.props.toggleIsFetching(false);
-            });
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setTotalCount(data.totalCount);
+            this.props.toggleIsFetching(false);
+        });
     };
 
     changeCurrentPage(page) {

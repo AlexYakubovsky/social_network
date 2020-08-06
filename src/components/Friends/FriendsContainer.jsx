@@ -10,7 +10,8 @@ import Preloader from "../common/Preloader/Preloader";
 class FriendsContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
@@ -20,7 +21,8 @@ class FriendsContainer extends React.Component {
 
     changeCurrentPage(page) {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setCurrentPage(page);

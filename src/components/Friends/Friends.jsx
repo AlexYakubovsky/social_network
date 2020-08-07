@@ -43,7 +43,8 @@ const Friends = props => {
 
                                     <div className={styles.user_info__follow}>
                                         {v.followed ?
-                                            <button onClick={() => {
+                                            <button disabled={props.isDisableButton.some(id => id === v.id)} onClick={() => {
+                                                props.toggleIsDisableButton(true, v.id);
                                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${v.id}`,
                                                     {
                                                         withCredentials: true,
@@ -51,10 +52,11 @@ const Friends = props => {
                                                             "API-KEY": "71e5da94-7843-4823-b8ed-9a2fc4fe9a74"
                                                         }
                                                     }).then(response => {
-                                                    response.data.resultCode === 0 && props.unfollowUser(v.id)
+                                                    response.data.resultCode === 0 && props.unfollowUser(v.id) && props.toggleIsDisableButton(false, v.id)
                                                 });
                                             }}>Unfollow</button> :
-                                            <button onClick={() => {
+                                            <button disabled={props.isDisableButton.some(id => id === v.id)} onClick={() => {
+                                                props.toggleIsDisableButton(true, v.id);
                                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${v.id}`, {},
                                                     {
                                                         withCredentials: true,
@@ -62,7 +64,7 @@ const Friends = props => {
                                                             "API-KEY": "71e5da94-7843-4823-b8ed-9a2fc4fe9a74"
                                                         }
                                                     }).then(response => {
-                                                    response.data.resultCode === 0 && props.followUser(v.id)
+                                                    response.data.resultCode === 0 && props.followUser(v.id) && props.toggleIsDisableButton(false, v.id)
                                                 });
                                             }}>Follow</button>}
                                     </div>

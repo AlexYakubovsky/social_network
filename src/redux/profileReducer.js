@@ -16,10 +16,7 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_POST_VALUE:
-            return {
-                ...state,
-                postValue: action.newPostValue
-            };
+            return {...state, postValue: action.newPostValue};
 
         case ADD_POST:
             let newPost = {
@@ -28,17 +25,10 @@ const profileReducer = (state = initialState, action) => {
                 like: 0
             };
 
-            return {
-                ...state,
-                postValue: '',
-                postData: [...state.postData, newPost]
-            };
+            return {...state, postValue: '', postData: [...state.postData, newPost]};
 
         case SET_USER_PROFILE:
-            return {
-                ...state,
-                userProfile: {...action.userProfile}
-            };
+            return {...state, userProfile: {...action.userProfile}};
 
         default:
             return state;

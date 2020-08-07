@@ -2,7 +2,7 @@ import React from "react";
 import Friends from "./Friends";
 import {connect} from "react-redux";
 import {
-    followUser, setUsers, unfollowUser, setTotalCount, setCurrentPage, toggleIsFetching
+    followUser, setUsers, unfollowUser, setTotalCount, setCurrentPage, toggleIsFetching, toggleIsDisableButton
 } from "../../redux/friendsReducer";
 import * as axios from "axios";
 import Preloader from "../common/Preloader/Preloader";
@@ -45,10 +45,11 @@ const mapStateToProps = state => {
         totalCount: state.friendsPage.totalCount,
         pageSize: state.friendsPage.pageSize,
         currentPage: state.friendsPage.currentPage,
-        isFetching: state.friendsPage.isFetching
+        isFetching: state.friendsPage.isFetching,
+        isDisableButton: state.friendsPage.isDisableButton
     }
 };
 
 export default connect(mapStateToProps, {
-    setUsers, followUser, unfollowUser, setTotalCount, setCurrentPage, toggleIsFetching
+    setUsers, followUser, unfollowUser, setTotalCount, setCurrentPage, toggleIsFetching, toggleIsDisableButton
 })(FriendsContainer);

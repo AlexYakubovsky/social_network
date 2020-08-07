@@ -4,51 +4,43 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_DISABLE_BUTTON = 'TOGGLE_IS_DISABLE_BUTTON';
 
 const initialState = {
     users: [],
     totalCount: null,
     currentPage: 1,
     pageSize: 50,
-    isFetching: false
+    isFetching: false,
+    isDisableButton: []
 };
 
 const friendsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERS:
-            return {
-                ...state,
-                users: action.users
-            };
+            return {...state, users: action.users};
 
         case FOLLOW:
-            return {
-                ...state,
-                users: state.users.map(v => v.id === action.userId ? {...v, followed: true} : v)
-            };
+            return {...state, users: state.users.map(v => v.id === action.userId ? {...v, followed: true} : v)};
 
         case UNFOLLOW:
-            return {
-                ...state,
-                users: state.users.map(v => v.id === action.userId ? {...v, followed: false} : v)
-            };
+            return {...state, users: state.users.map(v => v.id === action.userId ? {...v, followed: false} : v)};
 
         case SET_TOTAL_COUNT:
-            return {
-                ...state,
-                totalCount: action.totalCount
-            };
+            return {...state, totalCount: action.totalCount};
 
         case SET_CURRENT_PAGE:
-            return {
-                ...state,
-                currentPage: action.currentPage
-            };
+            return {...state, currentPage: action.currentPage};
 
         case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching};
+
+        case TOGGLE_IS_DISABLE_BUTTON:
             return {
                 ...state,
-                isFetching: action.isFetching
+                isDisableButton: action.isDisableButton ?
+                    [...state.isDisableButton, action.userId] :
+                    state.isDisableButton.filter(id => id !== action.userId)
             };
 
         default:
@@ -62,5 +54,10 @@ export const unfollowUser = userId => ({type: UNFOLLOW, userId});
 export const setTotalCount = totalCount => ({type: SET_TOTAL_COUNT, totalCount});
 export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, currentPage});
 export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleIsDisableButton = (isDisableButton, userId) => ({
+    type: TOGGLE_IS_DISABLE_BUTTON,
+    isDisableButton,
+    userId
+});
 
 export default friendsReducer;

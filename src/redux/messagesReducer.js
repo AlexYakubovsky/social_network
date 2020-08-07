@@ -20,10 +20,7 @@ const initialState = {
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_MESSAGE_VALUE:
-            return {
-                ...state,
-                messageValue: action.newMessageValue
-            };
+            return {...state,messageValue: action.newMessageValue};
 
         case ADD_MESSAGE:
             let newMessage = {
@@ -31,11 +28,7 @@ const messagesReducer = (state = initialState, action) => {
                 message: state.messageValue
             };
 
-            return {
-                ...state,
-                messageValue: '',
-                dialogData: [...state.dialogData, newMessage]
-            };
+            return {...state, messageValue: '', dialogData: [...state.dialogData, newMessage]};
 
         default:
             return state;

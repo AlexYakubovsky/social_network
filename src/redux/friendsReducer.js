@@ -58,8 +58,7 @@ export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, currentPa
 export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleIsDisableButton = (isDisableButton, userId) => ({
     type: TOGGLE_IS_DISABLE_BUTTON,
-    isDisableButton,
-    userId
+    isDisableButton, userId
 });
 
 export const getUsers = (pageSize, currentPage) => dispatch => {
@@ -74,13 +73,19 @@ export const getUsers = (pageSize, currentPage) => dispatch => {
 export const follow = id => dispatch => {
     dispatch(toggleIsDisableButton(true, id));
     friendsAPI.follow(id).then(data => {
-        data.resultCode === 0 && dispatch(followUser(id)) && dispatch(toggleIsDisableButton(false, id))
+        if (data.resultCode === 0) {
+            dispatch(followUser(id));
+            dispatch(toggleIsDisableButton(false, id))
+        }
     });
 };
 export const unfollow = id => dispatch => {
     dispatch(toggleIsDisableButton(true, id));
     friendsAPI.unfollow(id).then(data => {
-        data.resultCode === 0 && dispatch(unfollowUser(id)) && dispatch(toggleIsDisableButton(false, id))
+        if (data.resultCode === 0) {
+            dispatch(unfollowUser(id));
+            dispatch(toggleIsDisableButton(false, id))
+        }
     });
 };
 

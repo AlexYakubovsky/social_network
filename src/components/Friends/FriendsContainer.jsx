@@ -25,6 +25,7 @@ class FriendsContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        isAuth: state.auth.isAuth,
         users: state.friendsPage.users,
         totalCount: state.friendsPage.totalCount,
         pageSize: state.friendsPage.pageSize,

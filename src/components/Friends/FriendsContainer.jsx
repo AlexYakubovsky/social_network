@@ -2,7 +2,7 @@ import React from "react";
 import Friends from "./Friends";
 import {connect} from "react-redux";
 import {getUsers, follow, unfollow} from "../../redux/friendsReducer";
-import Preloader from "../common/Preloader/Preloader";
+import withAuthRedirect from "../hoc/withAuthRedirect";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
@@ -15,17 +15,13 @@ class FriendsContainer extends React.Component {
 
     render() {
         return (
-            <>
-                {this.props.isFetching ? <Preloader/> :
-                    <Friends changeCurrentPage={this.changeCurrentPage.bind(this)} {...this.props}/>}
-            </>
+            <Friends changeCurrentPage={this.changeCurrentPage.bind(this)} {...this.props}/>
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.auth.isAuth,
         users: state.friendsPage.users,
         totalCount: state.friendsPage.totalCount,
         pageSize: state.friendsPage.pageSize,
@@ -35,6 +31,6 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {
-    getUsers, follow, unfollow
-})(FriendsContainer);
+const withAuthRedirectComponent = withAuthRedirect(FriendsContainer);
+
+export default connect(mapStateToProps, {getUsers, follow, unfollow})(withAuthRedirectComponent);

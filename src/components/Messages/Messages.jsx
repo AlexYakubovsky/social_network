@@ -13,6 +13,7 @@ const Messages = props => {
     };
 
     let onAddMessage = () => props.addMessage();
+
     return (
         <div className={styles.messages}>
             <div className={styles.user_container}>{userComponent}</div>

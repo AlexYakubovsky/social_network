@@ -14,7 +14,7 @@ const initialState = {
     currentPage: 1,
     pageSize: 50,
     isFetching: false,
-    isDisableButton: []
+    disableButton: []
 };
 
 const friendsReducer = (state = initialState, action) => {
@@ -40,9 +40,9 @@ const friendsReducer = (state = initialState, action) => {
         case TOGGLE_IS_DISABLE_BUTTON:
             return {
                 ...state,
-                isDisableButton: action.isDisableButton ?
-                    [...state.isDisableButton, action.userId] :
-                    state.isDisableButton.filter(id => id !== action.userId)
+                disableButton: action.disableButton ?
+                    [...state.disableButton, action.userId] :
+                    state.disableButton.filter(id => id !== action.userId)
             };
 
         default:
@@ -56,9 +56,9 @@ export const unfollowUser = userId => ({type: UNFOLLOW_USER, userId});
 export const setTotalCount = totalCount => ({type: SET_TOTAL_COUNT, totalCount});
 export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, currentPage});
 export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleIsDisableButton = (isDisableButton, userId) => ({
+export const toggleDisableButton = (disableButton, userId) => ({
     type: TOGGLE_IS_DISABLE_BUTTON,
-    isDisableButton, userId
+    disableButton, userId
 });
 
 export const getUsers = (pageSize, currentPage) => dispatch => {
@@ -71,20 +71,20 @@ export const getUsers = (pageSize, currentPage) => dispatch => {
     });
 };
 export const follow = id => dispatch => {
-    dispatch(toggleIsDisableButton(true, id));
+    dispatch(toggleDisableButton(true, id));
     friendsAPI.follow(id).then(data => {
         if (data.resultCode === 0) {
             dispatch(followUser(id));
-            dispatch(toggleIsDisableButton(false, id))
+            dispatch(toggleDisableButton(false, id))
         }
     });
 };
 export const unfollow = id => dispatch => {
-    dispatch(toggleIsDisableButton(true, id));
+    dispatch(toggleDisableButton(true, id));
     friendsAPI.unfollow(id).then(data => {
         if (data.resultCode === 0) {
             dispatch(unfollowUser(id));
-            dispatch(toggleIsDisableButton(false, id))
+            dispatch(toggleDisableButton(false, id))
         }
     });
 };

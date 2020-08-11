@@ -3,6 +3,7 @@ import Friends from "./Friends";
 import {connect} from "react-redux";
 import {getUsers, follow, unfollow} from "../../redux/friendsReducer";
 import withAuthRedirect from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
@@ -27,10 +28,11 @@ const mapStateToProps = state => {
         pageSize: state.friendsPage.pageSize,
         currentPage: state.friendsPage.currentPage,
         isFetching: state.friendsPage.isFetching,
-        isDisableButton: state.friendsPage.isDisableButton
+        disableButton: state.friendsPage.disableButton
     }
 };
 
-const withAuthRedirectComponent = withAuthRedirect(FriendsContainer);
-
-export default connect(mapStateToProps, {getUsers, follow, unfollow})(withAuthRedirectComponent);
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {getUsers, follow, unfollow})
+)(FriendsContainer);

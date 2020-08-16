@@ -1,12 +1,3 @@
 .profile_description {
 
 }
-
-.profile_description__background_photo {
-    width: 100%;
-}
-
-.profile_description__background_photo img {
-    width: 100%;
-    border-radius: 5px;
-}

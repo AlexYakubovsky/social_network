@@ -2,17 +2,13 @@ import React from "react";
 import styles from "./Messages.module.css";
 import User from "./User/User";
 import Dialog from "./Dialog/Dialog";
+import MessageForm from "./MessageForm/MessageForm";
 
 const Messages = props => {
-    let userComponent = props.userData.map(v => <User id={v.id} name={v.name}/>);
-    let dialogComponent = props.dialogData.map(v => <Dialog id={v.id} message={v.message}/>);
+    let userComponent = props.userData.map(v => <User id={v.id} name={v.name}/>),
+        dialogComponent = props.dialogData.map(v => <Dialog id={v.id} message={v.message}/>);
 
-    let onChangeMessageValue = e => {
-        let messageValue = e.target.value;
-        props.changeMessageValue(messageValue);
-    };
-
-    let onAddMessage = () => props.addMessage();
+    const onSubmit = formData => props.addMessage(formData.message);
 
     return (
         <div className={styles.messages}>
@@ -21,11 +17,7 @@ const Messages = props => {
             <div className={styles.dialog_container}>
                 <div>{dialogComponent}</div>
 
-                <div className={styles.messages__new_message}>
-                    <textarea placeholder={'Message...'} value={props.messageValue}
-                              onChange={onChangeMessageValue}/>
-                    <button onClick={onAddMessage}>Send message</button>
-                </div>
+                <MessageForm onSubmit={onSubmit}/>
             </div>
         </div>
     )

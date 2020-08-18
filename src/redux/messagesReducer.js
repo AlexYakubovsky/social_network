@@ -1,4 +1,3 @@
-const CHANGE_MESSAGE_VALUE = 'CHANGE_MESSAGE_VALUE';
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
 const initialState = {
@@ -13,29 +12,24 @@ const initialState = {
         {id: 2, name: 'Kirill'},
         {id: 3, name: 'Evgeny'},
         {id: 4, name: 'Olga'},
-    ],
-    messageValue: ''
+    ]
 };
 
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_MESSAGE_VALUE:
-            return {...state,messageValue: action.newMessageValue};
-
         case ADD_MESSAGE:
             let newMessage = {
                 id: 5,
-                message: state.messageValue
+                message: action.message
             };
 
-            return {...state, messageValue: '', dialogData: [...state.dialogData, newMessage]};
+            return {...state, dialogData: [...state.dialogData, newMessage]};
 
         default:
             return state;
     }
 };
 
-export const changeMessageValue = newMessageValue => ({type: CHANGE_MESSAGE_VALUE, newMessageValue});
-export const addMessage = () => ({type: ADD_MESSAGE});
+export const addMessage = message => ({type: ADD_MESSAGE, message});
 
 export default messagesReducer;

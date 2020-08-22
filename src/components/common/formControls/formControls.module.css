@@ -1,4 +1,4 @@
-.error_input {
+.error_input textarea, .error_input input {
     border: solid 2px red;
 }
 

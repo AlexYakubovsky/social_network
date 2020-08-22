@@ -4,7 +4,7 @@ import {Route} from "react-router-dom";
 
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from "./components/Nav/Nav";
-import Login from "./components/Login/Login";
+import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
@@ -16,7 +16,7 @@ const App = () => {
             <HeaderContainer/>
             <Nav/>
             <main className='main'>
-                <Route path='/login' render={() => <Login/>}/>
+                <Route path='/login' render={() => <LoginContainer/>}/>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                 <Route path='/messages' render={() => <MessagesContainer/>}/>
                 <Route path='/friends' render={() => <FriendsContainer/>}/>

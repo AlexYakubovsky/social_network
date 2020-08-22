@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../Messages.module.css";
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../../../helpers/formControls/formControls";
+import {Textarea} from "../../common/formControls/formControls";
 import {maxLengthCreator, required} from "../../../helpers/validations/validations";
 
 const maxLength50 = maxLengthCreator(50);

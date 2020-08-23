@@ -2,7 +2,7 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {Textarea} from "../common/formControls/formControls";
 import {required} from "../../helpers/validations/validations";
-
+import styles from "./LoginForm.module.css"
 
 const LoginForm = props => {
     return (
@@ -23,6 +23,8 @@ const LoginForm = props => {
                    component='input'
                    type='checkbox'/>
             Remember me
+
+            {props.error && <p className={styles.loginForm__someError}>{props.error}</p>}
 
             <button type='submit'>Send</button>
         </form>

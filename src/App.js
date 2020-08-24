@@ -9,21 +9,34 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import Footer from "./components/Footer/Footer";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {initiatedApp} from "./redux/appReducer";
+import Preloader from "./components/common/Preloader/Preloader";
 
-const App = () => {
-    return (
-        <div className='app'>
-            <HeaderContainer/>
-            <Nav/>
-            <main className='main'>
-                <Route path='/login' render={() => <LoginContainer/>}/>
-                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                <Route path='/messages' render={() => <MessagesContainer/>}/>
-                <Route path='/friends' render={() => <FriendsContainer/>}/>
-            </main>
-            <Footer/>
-        </div>
-    );
-};
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initiatedApp()
+    }
 
-export default App;
+    render() {
+        return !this.props.isInitiated ? <Preloader/> :
+            <div className='app'>
+                <HeaderContainer/>
+                <Nav/>
+                <main className='main'>
+                    <Route path='/login' render={() => <LoginContainer/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                    <Route path='/messages' render={() => <MessagesContainer/>}/>
+                    <Route path='/friends' render={() => <FriendsContainer/>}/>
+                </main>
+                <Footer/>
+            </div>
+    }
+}
+
+const mapStateToProps = state => ({isInitiated: state.app.isInitiated});
+
+export default compose(
+    connect(mapStateToProps, {initiatedApp})
+)(App);

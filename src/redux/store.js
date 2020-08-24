@@ -5,12 +5,14 @@ import messagesReducer from "./messagesReducer";
 import friendsReducer from "./friendsReducer";
 import authReducer from "./authReducer";
 import {reducer as formReducer} from 'redux-form'
+import appReducer from "./appReducer";
 
 let reducers = combineReducers({
+    app: appReducer,
+    auth: authReducer,
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     friendsPage: friendsReducer,
-    auth: authReducer,
     form: formReducer
 });
 

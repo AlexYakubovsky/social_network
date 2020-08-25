@@ -5,16 +5,12 @@ import {Redirect} from "react-router-dom";
 const Login = props => {
     const onSubmit = formData => props.loginUser(formData.email, formData.password, formData.rememberMe);
 
-    return (
-        <>
-            {props.isAuth ? <Redirect to={'/profile'}/> :
-                <div>
-                    <h1>Login</h1>
+    return props.isAuth ? <Redirect to={'/profile'}/> :
+        <div>
+            <h1>Login</h1>
 
-                    <LoginForm onSubmit={onSubmit}/>
-                </div>}
-        </>
-    )
+            <LoginForm onSubmit={onSubmit}/>
+        </div>
 };
 
 export default Login;

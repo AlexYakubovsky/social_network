@@ -1,9 +1,10 @@
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {getPostData} from "../../../reselects/profileReselect";
 
 const mapStateToProps = state => {
     return {
-        postData: state.profilePage.postData
+        postData: getPostData(state)
     }
 };
 

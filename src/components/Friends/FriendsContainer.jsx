@@ -1,17 +1,25 @@
 import React from "react";
 import Friends from "./Friends";
 import {connect} from "react-redux";
-import {getUsers, follow, unfollow} from "../../redux/friendsReducer";
+import {requestUsers, follow, unfollow} from "../../redux/friendsReducer";
 import withAuthRedirect from "../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getDisableButton,
+    getIsFetching,
+    getPageSize,
+    getTotalCount,
+    getUsers
+} from "../../reselects/friendsReselect";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.pageSize, this.props.currentPage)
+        this.props.requestUsers(this.props.pageSize, this.props.currentPage)
     };
 
     changeCurrentPage(page) {
-        this.props.getUsers(this.props.pageSize, page)
+        this.props.requestUsers(this.props.pageSize, page)
     };
 
     render() {
@@ -23,16 +31,16 @@ class FriendsContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        users: state.friendsPage.users,
-        totalCount: state.friendsPage.totalCount,
-        pageSize: state.friendsPage.pageSize,
-        currentPage: state.friendsPage.currentPage,
-        isFetching: state.friendsPage.isFetching,
-        disableButton: state.friendsPage.disableButton
+        users: getUsers(state),
+        totalCount: getTotalCount(state),
+        pageSize: getPageSize(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        disableButton: getDisableButton(state)
     }
 };
 
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, {getUsers, follow, unfollow})
+    connect(mapStateToProps, {requestUsers, follow, unfollow})
 )(FriendsContainer);

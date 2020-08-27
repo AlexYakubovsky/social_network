@@ -61,7 +61,7 @@ export const toggleDisableButton = (disableButton, userId) => ({
     disableButton, userId
 });
 
-export const getUsers = (pageSize, currentPage) => dispatch => {
+export const requestUsers = (pageSize, currentPage) => dispatch => {
     dispatch(toggleIsFetching(true));
     friendsAPI.getUsers(pageSize, currentPage).then(data => {
         dispatch(setUsers(data.items));

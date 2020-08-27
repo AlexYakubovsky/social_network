@@ -1,0 +1,1 @@
+export const getIsInitiated = state => state.app.isInitiated;

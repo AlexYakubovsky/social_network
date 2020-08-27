@@ -13,6 +13,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {initiatedApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import {getIsInitiated} from "./reselects/appReselect";
 
 class App extends React.Component {
     componentDidMount() {
@@ -35,7 +36,7 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({isInitiated: state.app.isInitiated});
+const mapStateToProps = state => ({isInitiated: getIsInitiated(state)});
 
 export default compose(
     connect(mapStateToProps, {initiatedApp})

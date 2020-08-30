@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./NewPostForm.module.css";
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import {maxLengthCreator, required} from "../../../../helpers/validations/validations";
 import {Textarea} from "../../../common/formControls/formControls";
 
 const maxLength10 = maxLengthCreator(10);
+const afterSubmit = (result, dispatch) => dispatch(reset('post'));
 
 const NewPostForm = props => {
     return (
@@ -19,4 +20,4 @@ const NewPostForm = props => {
     );
 };
 
-export default reduxForm({form: 'post'})(NewPostForm);
+export default reduxForm({form: 'post', onSubmitSuccess: afterSubmit})(NewPostForm);

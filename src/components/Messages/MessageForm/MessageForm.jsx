@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "../Messages.module.css";
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import {Textarea} from "../../common/formControls/formControls";
 import {maxLengthCreator, required} from "../../../helpers/validations/validations";
 
 const maxLength50 = maxLengthCreator(50);
+const afterSubmit = (result, dispatch) => dispatch(reset('message'));
 
 const MessageForm = props => {
     return (
@@ -19,4 +20,4 @@ const MessageForm = props => {
     )
 };
 
-export default reduxForm({form: 'message'})(MessageForm);
+export default reduxForm({form: 'message', onSubmitSuccess: afterSubmit})(MessageForm);

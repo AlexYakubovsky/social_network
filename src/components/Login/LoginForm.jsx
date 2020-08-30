@@ -1,8 +1,10 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import {Textarea} from "../common/formControls/formControls";
 import {required} from "../../helpers/validations/validations";
 import styles from "./LoginForm.module.css"
+
+const afterSubmit = (result, dispatch) => dispatch(reset('login'));
 
 const LoginForm = props => {
     return (
@@ -31,4 +33,4 @@ const LoginForm = props => {
     )
 };
 
-export default reduxForm({form: 'login'})(LoginForm)
+export default reduxForm({form: 'login', onSubmitSuccess: afterSubmit})(LoginForm)

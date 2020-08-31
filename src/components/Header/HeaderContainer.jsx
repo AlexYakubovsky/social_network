@@ -13,12 +13,10 @@ class HeaderContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        isAuth: getIsAuth(state),
-        login: getLogin(state)
-    }
-};
+const mapStateToProps = state => ({
+    isAuth: getIsAuth(state),
+    login: getLogin(state)
+});
 
 export default compose(
     connect(mapStateToProps, {logoutUser})

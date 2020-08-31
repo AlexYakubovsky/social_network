@@ -5,12 +5,10 @@ import withAuthRedirect from "../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {getUserData, getDialogData} from "../../reselects/messagesReselect";
 
-const mapStateToProps = state => {
-    return {
-        userData: getUserData(state),
-        dialogData: getDialogData(state)
-    }
-};
+const mapStateToProps = state => ({
+    userData: getUserData(state),
+    dialogData: getDialogData(state)
+});
 
 export default compose(
     withAuthRedirect,

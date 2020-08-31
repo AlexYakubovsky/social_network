@@ -6,6 +6,12 @@ class ProfileStatus extends React.Component {
         userStatus: this.props.userStatus
     };
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.userStatus !== this.props.userStatus) {
+            this.setState({userStatus: this.props.userStatus})
+        }
+    }
+
     activeEditMode = () => this.setState({editMode: true});
 
     deactiveEditMode = () => {
@@ -14,12 +20,6 @@ class ProfileStatus extends React.Component {
     };
 
     onChangeStatus = e => this.setState({userStatus: e.target.value});
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({userStatus: this.props.userStatus})
-        }
-    }
 
     render() {
         return (

@@ -11,7 +11,6 @@ const initialState = {
         {id: 3, post: 'How are you?', like: 3},
         {id: 4, post: 'What do you think about my last post?:)', like: 5}
     ],
-    postValue: '',
     userProfile: null,
     userStatus: null
 };

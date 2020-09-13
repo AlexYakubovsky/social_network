@@ -1,12 +1,12 @@
 import {friendsAPI} from "../api/api";
 
-const SET_USERS = 'SET_USERS';
-const FOLLOW_USER = 'FOLLOW_USER';
-const UNFOLLOW_USER = 'UNFOLLOW_USER';
-const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_DISABLE_BUTTON = 'TOGGLE_IS_DISABLE_BUTTON';
+const SET_USERS = 'friendsPage/SET_USERS';
+const FOLLOW_USER = 'friendsPage/FOLLOW_USER';
+const UNFOLLOW_USER = 'friendsPage/UNFOLLOW_USER';
+const SET_TOTAL_COUNT = 'friendsPage/SET_TOTAL_COUNT';
+const SET_CURRENT_PAGE = 'friendsPage/SET_CURRENT_PAGE';
+const TOGGLE_IS_FETCHING = 'friendsPage/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_DISABLE_BUTTON = 'friendsPage/TOGGLE_IS_DISABLE_BUTTON';
 
 const initialState = {
     users: [],
@@ -56,37 +56,30 @@ export const unfollowUser = userId => ({type: UNFOLLOW_USER, userId});
 export const setTotalCount = totalCount => ({type: SET_TOTAL_COUNT, totalCount});
 export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, currentPage});
 export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleDisableButton = (disableButton, userId) => ({
-    type: TOGGLE_IS_DISABLE_BUTTON,
-    disableButton, userId
-});
+export const toggleDisableButton = (disableButton, userId) => ({type: TOGGLE_IS_DISABLE_BUTTON, disableButton, userId});
 
-export const requestUsers = (pageSize, currentPage) => dispatch => {
+export const requestUsers = (pageSize, currentPage) => async dispatch => {
     dispatch(toggleIsFetching(true));
-    friendsAPI.getUsers(pageSize, currentPage).then(data => {
-        dispatch(setUsers(data.items));
-        dispatch(setTotalCount(data.totalCount));
-        dispatch(setCurrentPage(currentPage));
-        dispatch(toggleIsFetching(false));
-    });
+    const data = await friendsAPI.getUsers(pageSize, currentPage);
+
+    dispatch(setUsers(data.items));
+    dispatch(setTotalCount(data.totalCount));
+    dispatch(setCurrentPage(currentPage));
+    dispatch(toggleIsFetching(false));
 };
-export const follow = id => dispatch => {
+
+const followUnfollowFlow = async (dispatch, id, apiMethod, actionCreator) => {
     dispatch(toggleDisableButton(true, id));
-    friendsAPI.follow(id).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(followUser(id));
-            dispatch(toggleDisableButton(false, id))
-        }
-    });
+    const data = await apiMethod(id);
+
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(id));
+        dispatch(toggleDisableButton(false, id))
+    }
 };
-export const unfollow = id => dispatch => {
-    dispatch(toggleDisableButton(true, id));
-    friendsAPI.unfollow(id).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(unfollowUser(id));
-            dispatch(toggleDisableButton(false, id))
-        }
-    });
-};
+
+export const follow = id => dispatch => followUnfollowFlow(dispatch, id, friendsAPI.follow, followUser);
+
+export const unfollow = id => dispatch => followUnfollowFlow(dispatch, id, friendsAPI.unfollow, unfollowUser);
 
 export default friendsReducer;

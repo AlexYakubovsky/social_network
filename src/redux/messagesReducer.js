@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'ADD_MESSAGE';
+const ADD_MESSAGE = 'messagePage/ADD_MESSAGE';
 
 const initialState = {
     dialogData: [
@@ -18,7 +18,7 @@ const initialState = {
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            let newMessage = {
+            const newMessage = {
                 id: 5,
                 message: action.message
             };

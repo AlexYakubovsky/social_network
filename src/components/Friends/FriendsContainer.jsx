@@ -15,16 +15,29 @@ import {
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
-        this.props.requestUsers(this.props.pageSize, this.props.currentPage)
+        const {requestUsers, pageSize, currentPage} = this.props;
+
+        requestUsers(pageSize, currentPage)
     };
 
     changeCurrentPage(page) {
-        this.props.requestUsers(this.props.pageSize, page)
+        const {requestUsers, pageSize} = this.props;
+
+        requestUsers(pageSize, page)
     };
 
     render() {
+        const {users, unfollow, follow, disableButton, totalCount, pageSize, currentPage} = this.props;
+
         return (
-            <Friends changeCurrentPage={this.changeCurrentPage.bind(this)} {...this.props}/>
+            <Friends changeCurrentPage={this.changeCurrentPage.bind(this)}
+                     users={users}
+                     unfollow={unfollow}
+                     follow={follow}
+                     disableButton={disableButton}
+                     totalCount={totalCount}
+                     pageSize={pageSize}
+                     currentPage={currentPage}/>
         )
     }
 }

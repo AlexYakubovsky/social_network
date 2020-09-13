@@ -3,15 +3,15 @@ import logo from "../../assets/images/logo.jpg";
 import styles from "./Header.module.css"
 import {NavLink} from "react-router-dom";
 
-const Header = props => {
+const Header = ({isAuth, login, logoutUser}) => {
     return (
         <header className={styles.header}>
             <div className={styles.header_container}>
                 <img alt='logo' src={logo}/>
-                {!props.isAuth ? <NavLink to='/login'>Login</NavLink> :
+                {!isAuth ? <NavLink to='/login'>Login</NavLink> :
                     <div>
-                        {props.login}
-                        <button onClick={props.logoutUser}>Logout</button>
+                        {login}
+                        <button onClick={logoutUser}>Logout</button>
                     </div>}
             </div>
         </header>

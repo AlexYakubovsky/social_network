@@ -14,7 +14,8 @@ const initialState = {
     currentPage: 1,
     pageSize: 50,
     isFetching: false,
-    disableButton: []
+    disableButton: [],
+    portionSize: 10
 };
 
 const friendsReducer = (state = initialState, action) => {

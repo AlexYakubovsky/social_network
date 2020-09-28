@@ -4,8 +4,8 @@ import Pagination from "../common/Pagination/Pagination";
 import Friend from "./Friend";
 
 const Friends = ({users, unfollow, follow, disableButton, ...props}) => {
-    const friendComponent = users.map(v => <Friend key={v.id} user={v} unfollow={unfollow} follow={follow}
-                                                   disableButton={disableButton}/>);
+    const friendComponent = users.map(v =>
+        <Friend key={v.id} user={v} unfollow={unfollow} follow={follow} disableButton={disableButton}/>);
 
     return (
         <div>

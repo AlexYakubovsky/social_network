@@ -10,7 +10,8 @@ import {
     getIsFetching,
     getPageSize,
     getTotalCount,
-    getUsers
+    getUsers,
+    getPortionSize
 } from "../../reselects/friendsReselect";
 
 class FriendsContainer extends React.Component {
@@ -49,7 +50,8 @@ const mapStateToProps = state => {
         pageSize: getPageSize(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        disableButton: getDisableButton(state)
+        disableButton: getDisableButton(state),
+        portionSize: getPortionSize(state)
     }
 };
 

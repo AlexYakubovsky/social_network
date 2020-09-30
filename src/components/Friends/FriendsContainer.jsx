@@ -8,7 +8,7 @@ import {
     getCurrentPage,
     getDisableButton,
     getIsFetching,
-    getPageSize,
+    getUsersOnPage,
     getTotalCount,
     getUsers,
     getPortionSize
@@ -16,19 +16,19 @@ import {
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
-        const {requestUsers, pageSize, currentPage} = this.props;
+        const {requestUsers, usersOnPage, currentPage} = this.props;
 
-        requestUsers(pageSize, currentPage)
+        requestUsers(usersOnPage, currentPage)
     };
 
     changeCurrentPage(page) {
-        const {requestUsers, pageSize} = this.props;
+        const {requestUsers, usersOnPage} = this.props;
 
-        requestUsers(pageSize, page)
+        requestUsers(usersOnPage, page)
     };
 
     render() {
-        const {users, unfollow, follow, disableButton, totalCount, pageSize, currentPage} = this.props;
+        const {users, unfollow, follow, disableButton, totalCount, usersOnPage, currentPage, portionSize} = this.props;
 
         return (
             <Friends changeCurrentPage={this.changeCurrentPage.bind(this)}
@@ -37,8 +37,9 @@ class FriendsContainer extends React.Component {
                      follow={follow}
                      disableButton={disableButton}
                      totalCount={totalCount}
-                     pageSize={pageSize}
-                     currentPage={currentPage}/>
+                     usersOnPage={usersOnPage}
+                     currentPage={currentPage}
+                     portionSize={portionSize}/>
         )
     }
 }
@@ -47,7 +48,7 @@ const mapStateToProps = state => {
     return {
         users: getUsers(state),
         totalCount: getTotalCount(state),
-        pageSize: getPageSize(state),
+        usersOnPage: getUsersOnPage(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         disableButton: getDisableButton(state),

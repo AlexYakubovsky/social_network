@@ -12,7 +12,7 @@ const initialState = {
     users: [],
     totalCount: null,
     currentPage: 1,
-    pageSize: 50,
+    usersOnPage: 50,
     isFetching: false,
     disableButton: [],
     portionSize: 10
@@ -59,9 +59,9 @@ export const setCurrentPage = currentPage => ({type: SET_CURRENT_PAGE, currentPa
 export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleDisableButton = (disableButton, userId) => ({type: TOGGLE_IS_DISABLE_BUTTON, disableButton, userId});
 
-export const requestUsers = (pageSize, currentPage) => async dispatch => {
+export const requestUsers = (usersOnPage, currentPage) => async dispatch => {
     dispatch(toggleIsFetching(true));
-    const data = await friendsAPI.getUsers(pageSize, currentPage);
+    const data = await friendsAPI.getUsers(usersOnPage, currentPage);
 
     dispatch(setUsers(data.items));
     dispatch(setTotalCount(data.totalCount));

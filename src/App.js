@@ -1,21 +1,20 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import "./App.css";
-import {Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from "./components/Nav/Nav";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import Footer from "./components/Footer/Footer";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {initiatedApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {getIsInitiated} from "./reselects/appReselect";
-import withSuspense from "./components/hoc/withSuspense";
 
-const LoginContainer = React.lazy(() => import('./components/Login/LoginContainer'));
-const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'));
-const FriendsContainer = React.lazy(() => import('./components/Friends/FriendsContainer'));
+const LoginContainer = lazy(() => import('./components/Login/LoginContainer'));
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const MessagesContainer = lazy(() => import('./components/Messages/MessagesContainer'));
+const FriendsContainer = lazy(() => import('./components/Friends/FriendsContainer'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -28,10 +27,14 @@ class App extends React.Component {
                 <HeaderContainer/>
                 <Nav/>
                 <main className='main'>
-                    <Route path='/login' render={withSuspense(LoginContainer)}/>
-                    <Route path='/profile/:userId?' render={ProfileContainer}/>
-                    <Route path='/messages' render={withSuspense(MessagesContainer)}/>
-                    <Route path='/friends' render={withSuspense(FriendsContainer)}/>
+                    <Suspense fallback={<Preloader/>}>
+                        <Switch>
+                            <Route path='/login' component={LoginContainer}/>
+                            <Route path='/profile/:userId?' component={ProfileContainer}/>
+                            <Route path='/messages' component={MessagesContainer}/>
+                            <Route path='/friends' component={FriendsContainer}/>
+                        </Switch>
+                    </Suspense>
                 </main>
                 <Footer/>
             </div>

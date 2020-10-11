@@ -9,11 +9,22 @@ import {getUserId} from "../../reselects/authReselect";
 import {getUserProfile, getUserStatus} from "../../reselects/profileReselect";
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
-        let id = this.props.match.params.userId || this.props.userId || 6733;
+    refreshProfile() {
+        const id = this.props.match.params.userId || this.props.userId || 6733;
+
         this.props.setProfile(id);
         this.props.setStatus(id);
+    }
+
+    componentDidMount() {
+        this.refreshProfile()
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile()
+        }
+    }
 
     render() {
         return (

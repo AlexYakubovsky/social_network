@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ProfileDescription.module.css"
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import userLogo from "../../../assets/images/user-logo.png"
 
 const ProfileDescription = props => {
     return !props.userProfile ? <Preloader/> :
@@ -10,7 +11,7 @@ const ProfileDescription = props => {
 
             <div>
                 <div>
-                    <img src={props.userProfile.photos.large} alt=''/>
+                    <img src={props.userProfile.photos.large || userLogo} alt=''/>
                 </div>
                 <div>
                     {props.userProfile.aboutMe}

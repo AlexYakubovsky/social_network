@@ -75,8 +75,7 @@ export const savePhoto = photo => async dispatch => {
     const data = await profileAPI.savePhoto(photo);
 
     if (data.resultCode === 0) {
-        dispatch(savePhotoSuccess(data.photos));
-        console.log(data)
+        dispatch(savePhotoSuccess(data.data.photos));
     }
 };
 

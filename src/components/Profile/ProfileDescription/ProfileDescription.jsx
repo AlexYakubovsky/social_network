@@ -4,23 +4,23 @@ import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import userLogo from "../../../assets/images/user-logo.png"
 
-const ProfileDescription = props => {
-    const onSavePhoto = e => e.target.files.length && props.savePhoto(e.target.files[0]);
+const ProfileDescription = ({savePhoto, userProfile, userStatus, updateStatus, isOwner}) => {
+    const onSavePhoto = e => e.target.files.length && savePhoto(e.target.files[0]);
 
-    return !props.userProfile ? <Preloader/> :
+    return !userProfile ? <Preloader/> :
         <div className={styles.profile_description}>
-            <ProfileStatus userStatus={props.userStatus} updateStatus={props.updateStatus}/>
+            <ProfileStatus userStatus={userStatus} updateStatus={updateStatus}/>
 
             <div>
                 <div>
-                    <img src={props.userProfile.photos.large || userLogo} alt=''/>
-                    {props.isOwner && <input type={'file'} onChange={onSavePhoto}/>}
+                    <img src={userProfile.photos.large || userLogo} alt=''/>
+                    {isOwner && <input type={'file'} onChange={onSavePhoto}/>}
                 </div>
                 <div>
-                    {props.userProfile.aboutMe}
+                    {userProfile.aboutMe}
                 </div>
                 <div>
-                    {props.userProfile.fullName}
+                    {userProfile.fullName}
                 </div>
             </div>
         </div>

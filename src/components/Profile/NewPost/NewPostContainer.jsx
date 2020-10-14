@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import NewPostForm from "./NewPostForm/NewPostForm";
 import React from "react";
 
-const NewPostContainer = props => {
-    let onSubmit = formData => props.addPost(formData.post);
+const NewPostContainer = ({addPost}) => {
+    let onSubmit = formData => addPost(formData.post);
 
     return (
         <NewPostForm onSubmit={onSubmit}/>

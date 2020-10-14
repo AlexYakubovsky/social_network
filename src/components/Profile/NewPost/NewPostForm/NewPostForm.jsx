@@ -7,9 +7,9 @@ import {Textarea} from "../../../common/formControls/formControls";
 const maxLength10 = maxLengthCreator(10);
 const afterSubmit = (result, dispatch) => dispatch(reset('post'));
 
-const NewPostForm = props => {
+const NewPostForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit} className={styles.new_post}>
+        <form onSubmit={handleSubmit} className={styles.new_post}>
             <Field name='post'
                    component={Textarea}
                    validate={[required, maxLength10]}

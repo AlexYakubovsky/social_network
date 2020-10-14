@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./User.module.css";
 import {NavLink} from "react-router-dom";
 
-const User = props => {
-    let path = `/messages/${props.id}`;
+const User = ({id, name}) => {
+    let path = `/messages/${id}`;
 
     return (
         <div className={styles.user} >
-            <NavLink to={path} activeClassName={styles.active}>{props.name}</NavLink>
+            <NavLink to={path} activeClassName={styles.active}>{name}</NavLink>
         </div>
     )
 };

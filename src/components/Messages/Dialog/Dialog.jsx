@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Dialog.module.css";
 
-const Dialog = props => {
+const Dialog = ({message}) => {
     return (
         <div className={styles.dialog}>
-            {props.message}
+            {message}
         </div>
     )
 };

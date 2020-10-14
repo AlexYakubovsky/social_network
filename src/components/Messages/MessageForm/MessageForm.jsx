@@ -7,9 +7,9 @@ import {maxLengthCreator, required} from "../../../helpers/validations/validatio
 const maxLength50 = maxLengthCreator(50);
 const afterSubmit = (result, dispatch) => dispatch(reset('message'));
 
-const MessageForm = props => {
+const MessageForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit} className={styles.messages__new_message}>
+        <form onSubmit={handleSubmit} className={styles.messages__new_message}>
             <Field name='message'
                    component={Textarea}
                    validate={[required, maxLength50]}

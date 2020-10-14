@@ -10,10 +10,11 @@ import {getUserProfile, getUserStatus} from "../../reselects/profileReselect";
 
 class ProfileContainer extends React.Component {
     refreshProfile() {
-        const id = this.props.match.params.userId || this.props.userId || 6733;
+        const {userId, setProfile, setStatus} = this.props;
+        const id = this.props.match.params.userId || userId || 6733;
 
-        this.props.setProfile(id);
-        this.props.setStatus(id);
+        setProfile(id);
+        setStatus(id);
     }
 
     componentDidMount() {
@@ -27,13 +28,15 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        const {userProfile, userStatus, updateStatus, savePhoto} = this.props;
+
         return (
             <Profile
-                userProfile={this.props.userProfile}
-                userStatus={this.props.userStatus}
-                updateStatus={this.props.updateStatus}
+                userProfile={userProfile}
+                userStatus={userStatus}
+                updateStatus={updateStatus}
                 isOwner={!this.props.match.params.userId}
-                savePhoto={this.props.savePhoto}/>
+                savePhoto={savePhoto}/>
         )
     };
 }

@@ -6,9 +6,9 @@ import styles from "./LoginForm.module.css"
 
 const afterSubmit = (result, dispatch) => dispatch(reset('login'));
 
-const LoginForm = props => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field name='email'
                    component={Textarea}
                    type='input'
@@ -26,7 +26,7 @@ const LoginForm = props => {
                    type='checkbox'/>
                    Remember me
 
-            {props.error && <p className={styles.loginForm__someError}>{props.error}</p>}
+            {error && <p className={styles.loginForm__someError}>{error}</p>}
 
             <button type='submit'>Send</button>
         </form>

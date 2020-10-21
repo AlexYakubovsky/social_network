@@ -6,7 +6,7 @@ import styles from "./LoginForm.module.css"
 
 const afterSubmit = (result, dispatch) => dispatch(reset('login'));
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captcha}) => {
     return (
         <form onSubmit={handleSubmit}>
             <Field name='email'
@@ -26,6 +26,13 @@ const LoginForm = ({handleSubmit, error}) => {
                    type='checkbox'/>
                    Remember me
 
+            {captcha && <img src={captcha} alt=''/>}
+            {captcha &&
+            <Field name="captcha"
+                   component={Textarea}
+                   type='input'
+                   validate={[required]}
+                   placeholder='Captcha'/>}
             {error && <p className={styles.loginForm__someError}>{error}</p>}
 
             <button type='submit'>Send</button>

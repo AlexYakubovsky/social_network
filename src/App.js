@@ -1,7 +1,6 @@
 import React, {lazy, Suspense} from "react";
 import "./App.css";
-import {Route, Switch} from "react-router-dom";
-
+import {Redirect, Route, Switch} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
@@ -29,10 +28,12 @@ class App extends React.Component {
                 <main className='main'>
                     <Suspense fallback={<Preloader/>}>
                         <Switch>
+                            <Route exact path='/' component={() => <Redirect to={'/profile'}/>}/>
                             <Route path='/login' component={LoginContainer}/>
                             <Route path='/profile/:userId?' component={ProfileContainer}/>
                             <Route path='/messages' component={MessagesContainer}/>
                             <Route path='/friends' component={FriendsContainer}/>
+                            <Route path='*' component={() => <div>404 not found</div>}/>
                         </Switch>
                     </Suspense>
                 </main>

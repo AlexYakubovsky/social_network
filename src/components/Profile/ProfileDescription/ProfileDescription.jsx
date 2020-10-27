@@ -4,6 +4,7 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import userLogo from "../../../assets/images/user-logo.png"
 import UserInfo from "./UserInfo/UserInfo";
 import UserInfoEdit from "./UserInfoEdit/UserInfoEdit";
+import cn from "classnames";
 
 const ProfileDescription = ({savePhoto, userProfile, isOwner, saveProfile, ...props}) => {
     const [isEditMode, setIsEditMode] = useState(false);
@@ -15,7 +16,7 @@ const ProfileDescription = ({savePhoto, userProfile, isOwner, saveProfile, ...pr
     };
 
     return (
-        <div className={styles.profile_description}>
+        <div className={cn(styles.profile_description)}>
             <ProfileStatus {...props}/>
 
             <div>

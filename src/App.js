@@ -6,9 +6,11 @@ import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {initiatedApp} from "./redux/appReducer";
+import {closeError, initiatedApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
-import {getIsInitiated} from "./reselects/appReselect";
+import {getAppErrors, getIsInitiated, getIsShowError} from "./reselects/appReselect";
+import ShowError from "./components/common/showError/ShowError";
+import cn from "classnames";
 
 const LoginContainer = lazy(() => import('./components/Login/LoginContainer'));
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
@@ -22,7 +24,7 @@ class App extends React.Component {
 
     render() {
         return !this.props.isInitiated ? <Preloader/> :
-            <div className='app'>
+            <div className={cn('app', 'showError')}>
                 <HeaderContainer/>
                 <Nav/>
                 <main className='main'>
@@ -38,12 +40,17 @@ class App extends React.Component {
                     </Suspense>
                 </main>
                 <Footer/>
+                {this.props.isShowError && <ShowError closeError={this.props.closeError} appErrors={this.props.appErrors}/>}
             </div>
     }
 }
 
-const mapStateToProps = state => ({isInitiated: getIsInitiated(state)});
+const mapStateToProps = state => ({
+    isInitiated: getIsInitiated(state),
+    appErrors: getAppErrors(state),
+    isShowError: getIsShowError(state)
+});
 
 export default compose(
-    connect(mapStateToProps, {initiatedApp})
+    connect(mapStateToProps, {initiatedApp, closeError})
 )(App);

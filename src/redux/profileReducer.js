@@ -1,5 +1,6 @@
 import {profileAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {showError} from "./appReducer";
 
 const ADD_POST = 'profilePage/ADD_POST';
 const SET_USER_PROFILE = 'profilePage/SET_USER_PROFILE';
@@ -53,42 +54,62 @@ export const deletePost = postId => ({type: DELETE_POST, postId});
 export const savePhotoSuccess = photos => ({type: SAVE_PHOTO_SUCCESS, photos});
 
 export const setProfile = id => async dispatch => {
-    const data = await profileAPI.getProfile(id);
+    try {
+        const data = await profileAPI.getProfile(id);
 
-    dispatch(setUserProfile(data));
+        dispatch(setUserProfile(data));
+    } catch (error) {
+        dispatch(showError(error))
+    }
 };
 
 export const setStatus = id => async dispatch => {
-    const data = await profileAPI.getStatus(id);
+    try {
+        const data = await profileAPI.getStatus(id);
 
-    dispatch(setUserStatus(data));
+        dispatch(setUserStatus(data));
+    } catch (error) {
+        dispatch(showError(error))
+    }
 };
 
 export const updateStatus = status => async dispatch => {
-    const data = await profileAPI.updateStatus(status);
+    try {
+        const data = await profileAPI.updateStatus(status);
 
-    if (data.resultCode === 0) {
-        dispatch(setUserStatus(status));
+        if (data.resultCode === 0) {
+            dispatch(setUserStatus(status));
+        }
+    } catch (error) {
+        dispatch(showError(error))
     }
 };
 
 export const savePhoto = photo => async dispatch => {
-    const data = await profileAPI.savePhoto(photo);
+    try {
+        const data = await profileAPI.savePhoto(photo);
 
-    if (data.resultCode === 0) {
-        dispatch(savePhotoSuccess(data.data.photos));
+        if (data.resultCode === 0) {
+            dispatch(savePhotoSuccess(data.data.photos));
+        }
+    } catch (error) {
+        dispatch(showError(error))
     }
 };
 
 export const saveProfile = profile => async (dispatch, getState) => {
-    const userId = getState().auth.id;
-    const data = await profileAPI.saveProfile(profile);
+    try {
+        const userId = getState().auth.id;
+        const data = await profileAPI.saveProfile(profile);
 
-    if (data.resultCode === 0) {
-        dispatch(setProfile(userId));
-    } else {
-        dispatch(stopSubmit('userInfoEdit', {_error: data.messages}));
-        // return Promise.reject(data.messages)
+        if (data.resultCode === 0) {
+            dispatch(setProfile(userId));
+        } else {
+            dispatch(stopSubmit('userInfoEdit', {_error: data.messages}));
+            // return Promise.reject(data.messages)
+        }
+    } catch (error) {
+        dispatch(showError(error))
     }
 };
 

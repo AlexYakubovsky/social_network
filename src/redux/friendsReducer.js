@@ -1,4 +1,5 @@
 import {friendsAPI} from "../api/api";
+import {showError} from "./appReducer";
 
 const SET_USERS = 'friendsPage/SET_USERS';
 const FOLLOW_USER = 'friendsPage/FOLLOW_USER';
@@ -60,22 +61,30 @@ export const toggleIsFetching = isFetching => ({type: TOGGLE_IS_FETCHING, isFetc
 export const toggleDisableButton = (disableButton, userId) => ({type: TOGGLE_IS_DISABLE_BUTTON, disableButton, userId});
 
 export const requestUsers = (usersOnPage, currentPage) => async dispatch => {
-    dispatch(toggleIsFetching(true));
-    const data = await friendsAPI.getUsers(usersOnPage, currentPage);
+    try {
+        dispatch(toggleIsFetching(true));
+        const data = await friendsAPI.getUsers(usersOnPage, currentPage);
 
-    dispatch(setUsers(data.items));
-    dispatch(setTotalCount(data.totalCount));
-    dispatch(setCurrentPage(currentPage));
-    dispatch(toggleIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalCount(data.totalCount));
+        dispatch(setCurrentPage(currentPage));
+        dispatch(toggleIsFetching(false));
+    } catch (error) {
+        dispatch(showError(error))
+    }
 };
 
 const followUnfollowFlow = async (dispatch, id, apiMethod, actionCreator) => {
-    dispatch(toggleDisableButton(true, id));
-    const data = await apiMethod(id);
+    try {
+        dispatch(toggleDisableButton(true, id));
+        const data = await apiMethod(id);
 
-    if (data.resultCode === 0) {
-        dispatch(actionCreator(id));
-        dispatch(toggleDisableButton(false, id))
+        if (data.resultCode === 0) {
+            dispatch(actionCreator(id));
+            dispatch(toggleDisableButton(false, id))
+        }
+    } catch (error) {
+        dispatch(showError(error))
     }
 };
 

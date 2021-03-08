@@ -6,7 +6,7 @@ const instance = axios.create({
     headers: {
         "API-KEY": "328259c5-68c4-4f02-9ce4-53684a25ddd6"
     }
-});
+})
 
 export const authAPI = {
     authMe() {
@@ -24,7 +24,7 @@ export const authAPI = {
     getCaptchaUrl() {
         return instance.get(`security/get-captcha-url`).then(response => response.data)
     }
-};
+}
 
 export const profileAPI = {
     getProfile(id) {
@@ -40,8 +40,8 @@ export const profileAPI = {
     },
 
     savePhoto(photo) {
-        const formData = new FormData();
-        formData.append('image', photo);
+        const formData = new FormData()
+        formData.append('image', photo)
 
         return instance.put(`profile/photo`, formData, {
             headers: {
@@ -53,7 +53,7 @@ export const profileAPI = {
     saveProfile(profile) {
         return instance.put(`profile`, profile).then(response => response.data)
     }
-};
+}
 
 export const friendsAPI = {
     getUsers(usersOnPage, currentPage) {
@@ -67,4 +67,4 @@ export const friendsAPI = {
     unfollow(id) {
         return instance.delete(`follow/${id}`).then(response => response.data)
     }
-};
+}

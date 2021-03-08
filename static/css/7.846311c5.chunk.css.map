@@ -1,0 +1,1 @@
+{"version":3,"sources":["formControls.module.css","LoginForm.module.css"],"names":[],"mappings":"AAAA,iFACI,oBACJ,CCFA,0EACI,SACJ","file":"7.846311c5.chunk.css","sourcesContent":[".error_input textarea, .error_input input {\r\n    border: solid 2px red;\r\n}\r\n\r\n.error_message {\r\n    color: red;\r\n}",".loginForm__someError {\r\n    color: red;\r\n}"]}

@@ -27,7 +27,7 @@ const App = ({initiatedApp, isInitiated, isShowError, closeError, appErrors}) =>
             <main className='main'>
                 <Suspense fallback={<Preloader/>}>
                     <Switch>
-                        <Route exact path='/' component={() => <Redirect to={'/profile'}/>}/>
+                        <Route path='/' exact component={() => <Redirect to={'/profile'}/>}/>
                         <Route path='/login' component={LoginContainer}/>
                         <Route path='/profile/:userId?' component={ProfileContainer}/>
                         <Route path='/messages' component={MessagesContainer}/>

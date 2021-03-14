@@ -4,8 +4,8 @@ import {Field, reduxForm, reset} from "redux-form";
 import {Textarea} from "../../common/formControls/formControls";
 import {maxLengthCreator, required} from "../../../helpers/validations/validations";
 
-const maxLength50 = maxLengthCreator(50);
-const afterSubmit = (result, dispatch) => dispatch(reset('message'));
+const maxLength50 = maxLengthCreator(50)
+const afterSubmit = (result, dispatch) => dispatch(reset('message'))
 
 const MessageForm = ({handleSubmit}) => {
     return (
@@ -13,11 +13,14 @@ const MessageForm = ({handleSubmit}) => {
             <Field name='message'
                    component={Textarea}
                    validate={[required, maxLength50]}
-                   type='text'
+                   type='textarea'
                    placeholder='Message...'/>
+
             <button type='submit'>Send message</button>
         </form>
     )
-};
+}
 
-export default reduxForm({form: 'message', onSubmitSuccess: afterSubmit})(MessageForm);
+export default reduxForm(
+    {form: 'message', onSubmitSuccess: afterSubmit}
+)(MessageForm)

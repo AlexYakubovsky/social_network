@@ -19,12 +19,13 @@ const appReducer = (state = initialState, action) => {
             const error = {
                 id: state.appErrors.length,
                 errorName: action.error.name,
-                errorMessage: action.error.message}
+                errorMessage: action.error.message
+            }
 
             return {...state, isShowError: true, appErrors: [...state.appErrors, error]}
 
         case CLOSE_ERROR:
-            return {...state, isShowError: false}
+            return {...state, isShowError: false, appErrors: [state.appErrors.length = 0]}
 
         default:
             return state

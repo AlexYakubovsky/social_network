@@ -21,7 +21,7 @@ const App = ({initiatedApp, isInitiated, isShowError, closeError, appErrors}) =>
     useEffect(() => initiatedApp())
 
     return !isInitiated ? <Preloader/> :
-        <div className={cn('app', 'showError')}>
+        <div className={cn('app', {show_error: isShowError})}>
             <HeaderContainer/>
             <Nav/>
             <main className='main'>

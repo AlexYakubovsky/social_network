@@ -10,7 +10,6 @@
     margin: 0;
     padding: 0;
     position: relative;
-    /*width: 100%;*/
 }
 
 .main {
@@ -23,7 +22,15 @@
     height: max-content;
 }
 
-.showError:before{
-    background: rgba(0, 0, 0, 0.75);
+.show_error {
+    overflow: hidden;
+    height: 100vh;
+}
 
+.show_error:before {
+    content: '';
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.90);
 }

@@ -1,16 +1,16 @@
-import React, {lazy, Suspense, useEffect} from "react";
-import "./App.css";
-import {Redirect, Route, Switch} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Nav from "./components/Nav/Nav";
-import Footer from "./components/Footer/Footer";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {closeError, initiatedApp} from "./redux/appReducer";
-import Preloader from "./components/common/Preloader/Preloader";
-import {getAppErrors, getIsInitiated, getIsShowError} from "./reselects/appReselect";
-import ShowError from "./components/common/showError/ShowError";
-import cn from "classnames";
+import React, {lazy, Suspense, useEffect} from "react"
+import "./App.css"
+import {Redirect, Route, Switch} from "react-router-dom"
+import HeaderContainer from "./components/Header/HeaderContainer"
+import Nav from "./components/Nav/Nav"
+import Footer from "./components/Footer/Footer"
+import {compose} from "redux"
+import {connect} from "react-redux"
+import {closeError, initiatedApp} from "./redux/appReducer"
+import Preloader from "./components/common/Preloader/Preloader"
+import {getAppErrors, getIsInitiated, getIsShowError} from "./reselects/appReselect"
+import ShowError from "./components/common/showError/ShowError"
+import cn from "classnames"
 
 const LoginContainer = lazy(() => import('./components/Login/LoginContainer'))
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))

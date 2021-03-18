@@ -1,7 +1,7 @@
 .app {
     display: grid;
     grid-template-areas: "header header header" "nav main ." "footer footer footer";
-    grid-template-rows: 80px 1fr 50px;
+    grid-template-rows: 70px 1fr 50px;
     grid-template-columns: 1fr 800px 1fr;
     grid-gap: 15px;
     min-width: 100vh;

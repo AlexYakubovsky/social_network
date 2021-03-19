@@ -1,5 +1,5 @@
-import React from "react";
-import styles from './ShowError.module.css';
+import React from "react"
+import styles from './ShowError.module.css'
 
 const ShowError = ({closeError, appErrors}) => {
     const errorDescription = appErrors.map(v => {

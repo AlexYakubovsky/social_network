@@ -23,16 +23,31 @@
 .nav ul li a:hover {
     color: #6b6b6b82;
 }
+
 .nav ul li a.active {
     color: #6b6b6b82;
     border-bottom: 1px solid #0066ff
 }
 
-@media screen and (min-width: 1367px) {
+@media (min-width: 1367px) {
     .nav {
         max-width: 150px;
         display: flex;
         width: 100%;
         justify-self: end;
+    }
+}
+
+@media (max-width: 991px) {
+    .nav {
+        position: fixed;
+        bottom: 0;
+        z-index: 999;
+        width: 100%;
+    }
+
+    .nav ul {
+        display: flex;
+        justify-content: space-around;
     }
 }

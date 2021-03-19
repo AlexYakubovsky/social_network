@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import styles from "./Pagination.module.css";
+import React, {useState} from "react"
+import styles from "./Pagination.module.css"
 
 const Pagination = ({totalCount, usersOnPage, changeCurrentPage, currentPage, portionSize}) => {
     const pagesCount = Math.ceil(totalCount / usersOnPage)

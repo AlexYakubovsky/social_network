@@ -46,6 +46,15 @@
     max-height: 30px;
 }
 
+.header__logout:hover {
+    transform: scale(1.1);
+    transition: all 1s;
+}
+
+.header__logout:not(:hover) {
+    transition: all 0.5s;
+}
+
 @media (max-width: 991px) {
     .header_container {
         max-width: 700px;

@@ -1,5 +1,28 @@
 .footer {
     grid-area: footer;
     background: white;
-    padding: 15px;
+    width: 100%;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 30px;
+    height: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer_container p {
+    font-weight: 600;
+}
+
+.footer_container p img {
+    max-width: 25px;
+    margin-bottom: -6px;
+    margin-left: 6px;
+    width: 100%;
+    height: auto;
 }

@@ -10,6 +10,7 @@ import {closeError, initiatedApp} from "./redux/appReducer"
 import Preloader from "./components/common/Preloader/Preloader"
 import {getAppErrors, getIsInitiated, getIsShowError} from "./reselects/appReselect"
 import ShowError from "./components/common/showError/ShowError"
+import error404 from "./components/common/error404/error404"
 import cn from "classnames"
 
 const LoginContainer = lazy(() => import('./components/Login/LoginContainer'))
@@ -32,7 +33,7 @@ const App = ({initiatedApp, isInitiated, isShowError, closeError, appErrors}) =>
                         <Route path='/profile/:userId?' component={ProfileContainer}/>
                         <Route path='/messages' component={MessagesContainer}/>
                         <Route path='/friends' component={FriendsContainer}/>
-                        <Route path='*' component={() => <div>404 not found</div>}/>
+                        <Route path='*' component={error404}/>
                     </Switch>
                 </Suspense>
             </main>
